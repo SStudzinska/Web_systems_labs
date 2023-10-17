@@ -7,8 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Athens, Greece, city, information, data, numbers, population, area, geography">
     <meta name="description" content="This website contains various data regarding Athens, both numerical and categorical.">
-    <title>Athens in specifics</title>
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
+    <title>Athens in specifics</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,7 +25,7 @@
     </nav>
     <h1 id="header">Athens in specifics</h1>
 
-    <table border="1">
+    <table id="administrative">
         <tr>
             <th colspan="2">Administrative data</th>
         </tr>
@@ -38,9 +43,9 @@
         </tr>
     </table><br>
 
-    <table border="1">
+    <table id="geographic">
         <tr>
-            <th colspan="2">Geographic data</td>
+            <th colspan="2">Geographic data</th>
         </tr>
         <tr>
             <td>Geographic region</td>
@@ -49,10 +54,10 @@
         <tr>
             <td>Elevation</td>
             <td>
-                <table border="1">
-                    <th colspan="2">
-                        Point
-                    </th>
+                <table id="elevation">
+                    <tr>
+                        <th colspan="2">Point</th>
+                    </tr>
                     <tr>
                         <td>Highest</td>
                         <td>338 m</td>
@@ -65,7 +70,7 @@
         </tr>
     </table><br>
 
-    <table border="1">
+    <table id="numbers">
         <tr>
             <th colspan="4">Athens in numbers</th>
         </tr>
@@ -95,7 +100,7 @@
         </tr>
     </table><br>
 
-    <table border="1">
+    <table id="miscellaneous">
         <tr>
             <th colspan="3">Miscellaneous</th>
         </tr>
@@ -127,6 +132,10 @@
             <td colspan="2">Dionysius the Areopagite</td>
         </tr>
     </table>
+
+    <p>
+        Source: <a href="https://en.wikipedia.org/wiki/Athens">Athens - Wikipedia</a>
+    </p>
 
     <br><br>
     <footer>
