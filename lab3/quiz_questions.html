@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Athens, Greece, city, information, quiz, trivia, questions">
+    <meta name="description" content="On this site you can take a trivia quiz about Athens.">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
+    <title>Athens – trivia quiz</title>
+</head>
+
+<body>
+    <nav>
+        <a href="main.html">Homepage</a> 
+        <a href="places_people.html">Places & People</a> 
+        <a href="data.html">Data</a> 
+        <a href="quiz_questions.html">Quiz</a>
+    </nav>
+    <h1 id="header">Athens – trivia quiz</h1>
+
+    <form action="quiz_answers.html">
+        <fieldset>
+            <legend>Quiz</legend>
+
+            <div>
+                <label for="city-size">
+                    <i>Question 1</i>. Where does Athens place in terms of population size, 
+                    compared to other cities in the European Union?
+                </label><br>
+
+                <select id="city-size" name="city-size">
+                    <option value="placeholder">Select an answer</option>
+                    <optgroup label="Top 10">
+                        <option value="first">1st-2nd</option>
+                        <option value="third">3rd-6th</option>
+                        <option value="seventh">7th-10th</option>
+                    </optgroup>
+                    <optgroup label="Top 20">
+                        <option value="eleventh">11th-15th</option>
+                        <option value="sixteenth">16th-20th</option>
+                    </optgroup>
+                </select>
+            </div><hr>
+
+            <div>
+                <label>
+                    <i>Question 2</i>. What is the correct name for the temple dedicated to 
+                    the goddess Athena?
+                </label><br>
+
+                <input type="radio" id="pantheon" name="temple-name" value="Pantheon">
+                <label for="pantheon">Pantheon</label>
+                <input type="radio" id="parthenon" name="temple-name" value="Parthenon">
+                <label for="parthenon">Parthenon</label>
+                <br>
+                <input type="radio" id="temple-both" name="temple-name" value="Both">
+                <label for="temple-both">Both names are correct and interchangeable.</label>
+            </div><hr>
+
+            <div>
+                <label for="acropolis-name">
+                    <i>Question 3</i>. What is the name of the hill which hosts, among other things, 
+                    the temple just mentioned?
+                </label><br>
+
+                <input type="text" id="acropolis-name" name="acropolis-name">
+            </div><hr>
+
+            <div>
+                <label>
+                    <i>Question 4</i>. Select pictures showing iconic landmarks or scenery of Athens.
+                </label><br>
+
+                <br>
+                <input type="checkbox" id="colosseum" name="athens-pictures" value="Colosseum">
+                <img src="images/colosseum.jpg" alt="A large, ancient, circular building."
+                    style="width:200px; height:150px">
+                <input type="checkbox" id="acropolis" name="athens-pictures" value="Acropolis">
+                <img src="images/acropolis.webp" alt="A hill with ancient ruins on it."
+                    style="width:225px; height:150px">
+                <br>
+                <input type="checkbox" id="theatre" name="athens-pictures" value="Theatre">
+                <img src="images/theatre.jpg" alt="An ancient theatre." style="width:200px; height:150px">
+                <input type="checkbox" id="aztec" name="athens-pictures" value="Aztec">
+                <img src="images/aztec.jpg" alt="An ancient, triangle-shaped temple." style="width:200px; height:150px">
+            </div><hr>
+
+            <div>
+                <label for="olympics-interval">
+                    <i>Question 5</i>. Every how many years are the Olympic Games held, which started 
+                    in their modern form in 1896 in Athens?
+                </label><br>
+
+                <input type="number" id="olympics-interval" name="olympics-interval" min="1">
+            </div><hr>
+
+            <div>
+                <label>
+                    <i>Question 6</i>. Which form of government is Athens said to be the cradle of?
+                </label><br>
+
+                <input type="radio" id="aristocracy" name="government-name" value="Aristocracy">
+                <label for="aristocracy">Aristocracy</label>
+                <input type="radio" id="oligarchy" name="government-name" value="Oligarchy">
+                <label for="oligarchy">Oligarchy</label>
+                <br>
+                <input type="radio" id="tyranny" name="government-name" value="Tyranny">
+                <label for="tyranny">Tyranny</label>
+                <input type="radio" id="democracy" name="government-name" value="Democracy">
+                <label for="democracy">Democracy</label>
+            </div><hr>
+
+            <div>
+                <label for="syntagma-name">
+                    <i>Question 7</i>. What is the name of the central square located in 
+                    the heart of Athens, just next to the Greek Parliament?
+                </label><br>
+
+                <input type="text" id="syntagma-name" name="syntagma-name">
+            </div><hr>
+
+            <input type="submit" value="Show answers">
+            <input type="reset" value="Clear">
+        </fieldset><br>
+    </form>
+
+    <br><br>
+    <footer>
+        <a href="#header">Back to top</a>
+    </footer>
+</body>
+
+</html>
