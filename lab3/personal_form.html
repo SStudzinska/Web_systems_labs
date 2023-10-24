@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="main.html">Homepage</a>
+            <a href="places_people.html">Places & People</a>
+            <a href="data.html">Data</a>
+            <a href="quiz_questions.html">Quiz</a>
+            <a href="personal_form.html">Personal Form</a>
+        </nav>
+    </header>
+    <h2> Personal form</h2>
+    
+    <form autocomplete="on">
+        <div>
+            <input type="text" name="name" id="name" autocomplete="given-name" autofocus>
+            <label for="name">Name</label>
+            <br>
+        </div>
+        <hr>
+        <div>
+            <input type="text" name="surname" id="surname" autocomplete="family-name" required>
+            <label for="surname">Surname</label>
+            <br>
+        </div>
+        <hr>
+        <div>
+            <input list="months" id="birthMonth" name="birthMonth" autocomplete="bday-month">
+            <datalist id="months">
+                <option value="January">
+                <option value="February">
+                <option value="March">
+                <option value="April">
+                <option value="May">
+                <option value="June">
+                <option value="July">
+                <option value="August">
+                <option value="September">
+                <option value="October">
+                <option value="November">
+                <option value="December">
+            </datalist>
+            <label for="birthMonth">Birth month</label>
+        <br>
+        </div>
+        <hr>
+        <div>
+            <input type="email" name="email" id="email" autocomplete="email" required>
+            <label for="email">E-mail</label>
+            <br>
+        </div>
+        <hr>
+        <div>
+            <input type="tel" name="phonenumber" id="phonenumber" autocomplete="tel" pattern="\+\d{2} \d{3}-\d{3}-\d{3}" title="Fill in your phone number using the format +XX XXX-XXX-XXX">
+            <label for="phonenumber">Phone number</label>
+        </div>
+        <hr>
+        <button type="submit">Submit</button>
+        
+    </form>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
