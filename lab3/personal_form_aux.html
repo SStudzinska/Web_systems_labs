@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="information, yourself, favorite, common, important">
+    <meta name="description" content="Here on this site you can provide additonal information about yourself.">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
+    <title>Personal form</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <nav>
+            <a href="main.html">Homepage</a> 
+            <a href="places_people.html">Places & People</a> 
+            <a href="data.html">Data</a> 
+            <a href="quiz_questions.html">Quiz</a>
+            <a href="personal_form.html">Personal form</a>
+        </nav>
+        <h1>Personal form</h1>
+    </header>
+
+    <main>
+        <form>
+            <div>
+                <label for="favorite-color">Select your favorite color:</label>
+                <input type="color" id="favcolor" name="favcolor" value="#000000">
+            </div><hr>
+
+            <div>
+                <label for="important-month-year">What is some month and year you hold dear?</label>
+                <input type="month" id="important-month-year" name="important-month-year">
+            </div><hr>
+
+            <div>
+                <label for="satisfaction">How satisfied are you with our website?</label>
+                <input type="range" id="satisfaction" name="satisfaction" min="1" max="5" value="3">
+            </div><hr>
+
+            <div>
+                <label for="common-search">What is the most common thing you search for online?</label>
+                <input type="search" name="common-search" id="common-search" placeholder="Enter your answer here (eg. shopping Sunday)" size="38">
+            </div><hr>
+
+            <div>
+                <label for="favorite-website">Enter a link to your favorite website:</label>
+                <input type="url" name="favorite-website" id="favorite-website" placeholder="Paste your link here (eg. https://athens-greece.com)" size="40">
+            </div><hr>
+
+            <input type="submit">
+        </form>
+    </main><br>
+    
+    <footer>
+        <a href="#header">Back to top</a>
+        <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
+    </footer>
+</body>
+
+</html>

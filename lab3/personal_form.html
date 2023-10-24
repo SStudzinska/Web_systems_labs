@@ -1,72 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="keywords" content="information, yourself, name, surname, birthday, email, phone">
+    <meta name="description" content="This website contains a form to fill with personal information about yourself.">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
+    <title>Personal form</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+    </style>
 </head>
+
 <body>
-    <header>
+    <header id="header">
         <nav>
-            <a href="main.html">Homepage</a>
-            <a href="places_people.html">Places & People</a>
-            <a href="data.html">Data</a>
+            <a href="main.html">Homepage</a> 
+            <a href="places_people.html">Places & People</a> 
+            <a href="data.html">Data</a> 
             <a href="quiz_questions.html">Quiz</a>
-            <a href="personal_form.html">Personal Form</a>
+            <a href="personal_form.html">Personal form</a>
         </nav>
+        <h1>Personal form</h1>
     </header>
-    <h2> Personal form</h2>
     
-    <form autocomplete="on">
-        <div>
-            <input type="text" name="name" id="name" autocomplete="given-name" autofocus>
-            <label for="name">Name</label>
+    <main>
+        <form autocomplete="on" action="personal_form_aux.html">
+            <div>
+                <input type="text" name="name" id="name" autocomplete="given-name" autofocus>
+                <label for="name">Name</label>
+                <br>
+            </div>
+            <hr>
+            <div>
+                <input type="text" name="surname" id="surname" autocomplete="family-name" required>
+                <label for="surname">Surname</label>
+                <br>
+            </div>
+            <hr>
+            <div>
+                <input list="months" id="birthMonth" name="birthMonth" autocomplete="bday-month">
+                <datalist id="months">
+                    <option value="January">
+                    <option value="February">
+                    <option value="March">
+                    <option value="April">
+                    <option value="May">
+                    <option value="June">
+                    <option value="July">
+                    <option value="August">
+                    <option value="September">
+                    <option value="October">
+                    <option value="November">
+                    <option value="December">
+                </datalist>
+                <label for="birthMonth">Birth month</label>
             <br>
-        </div>
-        <hr>
-        <div>
-            <input type="text" name="surname" id="surname" autocomplete="family-name" required>
-            <label for="surname">Surname</label>
-            <br>
-        </div>
-        <hr>
-        <div>
-            <input list="months" id="birthMonth" name="birthMonth" autocomplete="bday-month">
-            <datalist id="months">
-                <option value="January">
-                <option value="February">
-                <option value="March">
-                <option value="April">
-                <option value="May">
-                <option value="June">
-                <option value="July">
-                <option value="August">
-                <option value="September">
-                <option value="October">
-                <option value="November">
-                <option value="December">
-            </datalist>
-            <label for="birthMonth">Birth month</label>
-        <br>
-        </div>
-        <hr>
-        <div>
-            <input type="email" name="email" id="email" autocomplete="email" required>
-            <label for="email">E-mail</label>
-            <br>
-        </div>
-        <hr>
-        <div>
-            <input type="tel" name="phonenumber" id="phonenumber" autocomplete="tel" pattern="\+\d{2} \d{3}-\d{3}-\d{3}" title="Fill in your phone number using the format +XX XXX-XXX-XXX">
-            <label for="phonenumber">Phone number</label>
-        </div>
-        <hr>
-        <button type="submit">Submit</button>
-        
-    </form>
+            </div>
+            <hr>
+            <div>
+                <input type="email" name="email" id="email" autocomplete="email" required>
+                <label for="email">E-mail</label>
+                <br>
+            </div>
+            <hr>
+            <div>
+                <input type="tel" name="phonenumber" id="phonenumber" autocomplete="tel" pattern="\+\d{2} \d{3}-\d{3}-\d{3}" title="Fill in your phone number using the format +XX XXX-XXX-XXX">
+                <label for="phonenumber">Phone number</label>
+            </div>
+            <hr>
+            
+            <input type="submit" value="Continue">
+        </form>
+    </main>
 
+    <br>
     <footer>
-
+        <a href="#header">Back to top</a>
+        <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
     </footer>
 </body>
+
 </html>

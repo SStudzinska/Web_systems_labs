@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,61 +8,71 @@
     <meta name="description" content="On this website you can find out about famous places in Athens and people.">
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/6406/6406590.png">
     <title>Famous Places and People in Athens</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+    </style>
 </head>
+
 <body>
-    <header>
+    <header id="header">
         <nav>
-            <a href="main.html">Homepage</a>
-            <a href="places_people.html">Places & People</a>
-            <a href="data.html">Data</a>
+            <a href="main.html">Homepage</a> 
+            <a href="places_people.html">Places & People</a> 
+            <a href="data.html">Data</a> 
             <a href="quiz_questions.html">Quiz</a>
-            <a href="personal_form.html">Personal Form</a>
+            <a href="personal_form.html">Personal form</a>
         </nav>
-       
     </header>
    
-    <section>
-        <h1 id="header">Famous places in Athens</h1>
-        <p>There are a lot of beautiful and outstanding landmarks in Athens that you absolutely <b>need</b> to visit if you have the chance!</p>
-
-        <ol type="I">
-            <li><a href="#Parthenon">Parthenon</a></li>
-            <li><a href="#Acropolis_Museum">Acropolis Museum</a></li>
-            <li><a href="#Library">Hadrian's Library</a></li>
-            <li><a href="#Stadium">Panathenaic Stadium</a></li>
-            <li><a href="#Cemetery">First Cemetery of Athens</a></li>
-            <li><a href="#Syntagma_Square">Syntagma Square</a></li>
-            <li>Temples
-            <ol type="a">
-                <li><a href="#Hephaestus_Temple">Temple of Hephaestus</a></li>
-                <li><a href="#Athena_Temple">Temple of Athena Nike</a></li>
-                <li><a href="#Zeus_Temple">Temple of Olympian Zeus</a></li>
-                <li><a href="#Poseidon_Temple">Temple of Poseidon</a></li>
-            </ol>
-            </li>
-             <li><a href="#Tomb">Tomb of the Unknown Soldier</a></li>
-        </ol>
-        <p>Source: <a href="https://www.destguides.com/greece/attica/athens/famous-landmarks-athens">https://www.destguides.com/greece/attica/athens/famous-landmarks-athens</a></p>
-
-    </section>
-    <section>
-        <h1>Famous Athenians</h1>
-        <ul>
-            <li>Solon</li>
-            <li>Cleithenes</li>
-            <li>Plato</li>
-            <li>Pericles</li>
-            <li>Socrates</li>
-            <li>Peisistratos</li>
-            <li>Thucydides</li>
-            <li>Themistocles</li>
-            <li>Sophocles</li>
-            <li>Isocrates</li>
-        </ul>
-        <p> Source: <a href="https://greecetravelideas.com/famous-athenians/">https://greecetravelideas.com/famous-athenians/</a></p>
-    </section>
-
     <main>
+        <section>
+            <h1>Famous places in Athens</h1>
+            <p>There are a lot of beautiful and outstanding landmarks in Athens that you absolutely <b>need</b> to visit if you have the chance!</p>
+
+            <ol type="I">
+                <li><a href="#Parthenon">Parthenon</a></li>
+                <li><a href="#Acropolis_Museum">Acropolis Museum</a></li>
+                <li><a href="#Library">Hadrian's Library</a></li>
+                <li><a href="#Stadium">Panathenaic Stadium</a></li>
+                <li><a href="#Cemetery">First Cemetery of Athens</a></li>
+                <li><a href="#Syntagma_Square">Syntagma Square</a></li>
+                <li>Temples
+                <ol type="a">
+                    <li><a href="#Hephaestus_Temple">Temple of Hephaestus</a></li>
+                    <li><a href="#Athena_Temple">Temple of Athena Nike</a></li>
+                    <li><a href="#Zeus_Temple">Temple of Olympian Zeus</a></li>
+                    <li><a href="#Poseidon_Temple">Temple of Poseidon</a></li>
+                </ol>
+                </li>
+                <li><a href="#Tomb">Tomb of the Unknown Soldier</a></li>
+            </ol>
+            <p>Source: <a href="https://www.destguides.com/greece/attica/athens/famous-landmarks-athens">https://www.destguides.com/greece/attica/athens/famous-landmarks-athens</a></p>
+        </section>
+
+        <section>
+            <h1>Famous Athenians</h1>
+            <ul>
+                <li>Solon</li>
+                <li>Cleithenes</li>
+                <li>Plato</li>
+                <li>Pericles</li>
+                <li>Socrates</li>
+                <li>Peisistratos</li>
+                <li>Thucydides</li>
+                <li>Themistocles</li>
+                <li>Sophocles</li>
+                <li>Isocrates</li>
+            </ul>
+            <p> Source: <a href="https://greecetravelideas.com/famous-athenians/">https://greecetravelideas.com/famous-athenians/</a></p>
+        </section>
+
         <article>
             <h2 id="Parthenon">Parthenon</h2>
             <img src="https://cdn.britannica.com/54/150954-050-F8D14782/Night-view-Parthenon-Athens.jpg" alt="Parthenon photo" style="width:600px;height:400px;">
@@ -149,9 +160,12 @@
             <p>The tomb itself is made from beautiful limestone, with intricate details inscribed into the tomb. Carved into the wall is a soldier wearing just a helmet and wielding a shield.</p>
             <p>Locals and tourists alike gather in Syntagma Square every Sunday morning at 11 am to watch the changing of the guards at this landmark. This is a wonderful experience to catch if you are in the nearby area.</p>    
         </article>
-    </main>
+    </main><br>
+
     <footer>
         <a href="#header">Back to top</a>
+        <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
     </footer>
 </body>
+
 </html>
