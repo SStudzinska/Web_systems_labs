@@ -91,5 +91,57 @@
 }
 
 
+h1 {
+    font-variant: small-caps;
+    font-size:40pt;
+    margin: 10px 5px;
+    font-weight: lighter;
+    
+}
 
+p {
+    text-align: justify;
+    margin: 5px 15px;
+    
+}
 
+h2 {
+    font-size: 1.5em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    line-height: 1cm;
+    margin: 10px;
+    color: #e45e10;
+}
+
+h3 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 120%;
+    font-weight: 900;
+    margin: 1.5%;
+}
+
+a {
+    color: #446404;
+}
+
+a:visited {
+    color: rgb(88, 26, 26);
+}
+
+a:active {
+    color: blue;
+}
+
+summary {
+    margin: 20px 10px; 
+}
+
+#places-list li {
+    margin-left: 10%;
+    font-weight:600;
+}
+
+#athenians-list li {
+    margin-left: 5%;
+    list-style-type: square;
+}
