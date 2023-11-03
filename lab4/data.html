@@ -7,6 +7,7 @@
     <meta name="keywords" content="Athens, Greece, city, information, data, numbers, population, area, geography">
     <meta name="description" content="This website contains various data regarding Athens, both numerical and categorical.">
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
+    <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
     <title>Athens in specifics</title>
     <style>
         body {
@@ -25,12 +26,45 @@
 
 <body>
     <header id="header">
-        <nav>
-            <a href="main.html">Homepage</a> 
-            <a href="places_people.html">Places & People</a> 
-            <a href="data.html">Data</a> 
-            <a href="quiz_questions.html">Quiz</a>
-            <a href="personal_form.html">Personal form</a>
+        <nav class="menu">
+            <ul>
+                <li><a href="main.html">Homepage</a></li>
+                <li class="submenu"><a href="#">Information</a>
+                    <ul>
+                        <li class="sub-submenu"><a href="#">About Athens</a>
+                            <ul>
+                                <li><a href="places_people.html">Places & People</a></li>
+                                <li><a href="data.html">Data</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-submenu"><a href="#">More info</a>
+                        <ul>
+                            <li><a href="https://en.wikipedia.org/wiki/Athens">Athens wiki</a></li>
+                            <li><a href="https://www.thisisathens.org/">Official Athens Guide</a></li>
+                            <li><a href="https://www.google.com/maps?sca_esv=579179295&output=search&q=athens&source=lnms&entry=mc&sa=X&ved=2ahUKEwjBkaTqqqiCAxW__rsIHdczCq0Q0pQJegQIDhAB">Athens On The Map</a></li>
+                        </ul>
+                        
+                        </li>
+                    </ul>
+                </li>
+                <li class="submenu"><a href="#">Other</a>
+                    <ul>
+                        <li class="sub-submenu"><a href="#">Forms</a>
+                            <ul>
+                                <li><a href="personal_form.html">Personal form</a></li>
+                            </ul>
+                        </li>
+                            
+                        <li class="sub-submenu"><a href="#">Quizes</a>
+                            <ul>
+                                <li><a href="quiz_questions.html">Quiz</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="photos.zip">Download photos</a></li>
+                    </ul>
+                </li>
+
+            </ul>    
         </nav>
         <h1>Athens in specifics</h1>
     </header>
