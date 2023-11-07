@@ -9,16 +9,6 @@
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
     <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
     <title>Athens – trivia quiz</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        main {
-            flex: 1;
-        }
-    </style>
 </head>
 
 <body>
@@ -35,12 +25,13 @@
                             </ul>
                         </li>
                         <li class="sub-submenu"><a href="#">More info</a>
-                        <ul>
-                            <li><a href="https://en.wikipedia.org/wiki/Athens">Athens wiki</a></li>
-                            <li><a href="https://www.thisisathens.org/">Official Athens Guide</a></li>
-                            <li><a href="https://www.google.com/maps?sca_esv=579179295&output=search&q=athens&source=lnms&entry=mc&sa=X&ved=2ahUKEwjBkaTqqqiCAxW__rsIHdczCq0Q0pQJegQIDhAB">Athens On The Map</a></li>
-                        </ul>
-                        
+                            <ul>
+                                <li><a href="https://en.wikipedia.org/wiki/Athens">Athens wiki</a></li>
+                                <li><a href="https://www.thisisathens.org/">Official Athens Guide</a></li>
+                                <li><a
+                                        href="https://www.google.com/maps?sca_esv=579179295&output=search&q=athens&source=lnms&entry=mc&sa=X&ved=2ahUKEwjBkaTqqqiCAxW__rsIHdczCq0Q0pQJegQIDhAB">Athens
+                                        On The Map</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
@@ -51,7 +42,6 @@
                                 <li><a href="personal_form.html">Personal form</a></li>
                             </ul>
                         </li>
-                            
                         <li class="sub-submenu"><a href="#">Quizes</a>
                             <ul>
                                 <li><a href="quiz_questions.html">Quiz</a></li>
@@ -60,23 +50,21 @@
                         <li><a href="photos.zip">Download photos</a></li>
                     </ul>
                 </li>
-
-            </ul>    
+            </ul>
         </nav>
-        <h1>Athens – trivia quiz</h1>
     </header>
 
-    <main>
+    <main class="main-margin">
+        <h1>Athens – trivia quiz</h1>
         <form action="quiz_answers.html">
-            <fieldset>
+            <fieldset id="quiz-questions">
                 <legend>Quiz</legend>
-
                 <div>
                     <label for="city-size">
-                        <i>Question 1</i>. Where does Athens place in terms of population size, 
+                        <i>Question 1</i>. Where does Athens place in terms of population size,
                         compared to other cities in the European Union?
-                    </label><br>
-
+                    </label>
+                    <br>
                     <select id="city-size" name="city-size">
                         <option value="placeholder">Select an answer</option>
                         <optgroup label="Top 10">
@@ -89,14 +77,14 @@
                             <option value="sixteenth">16th-20th</option>
                         </optgroup>
                     </select>
-                </div><hr>
-
+                </div>
+                <hr>
                 <div>
                     <label>
-                        <i>Question 2</i>. What is the correct name for the temple dedicated to 
+                        <i>Question 2</i>. What is the correct name for the temple dedicated to
                         the goddess Athena?
-                    </label><br>
-
+                    </label>
+                    <br>
                     <input type="radio" id="pantheon" name="temple-name" value="Pantheon">
                     <label for="pantheon">Pantheon</label>
                     <input type="radio" id="parthenon" name="temple-name" value="Parthenon">
@@ -104,23 +92,22 @@
                     <br>
                     <input type="radio" id="temple-both" name="temple-name" value="Both">
                     <label for="temple-both">Both names are correct and interchangeable.</label>
-                </div><hr>
-
+                </div>
+                <hr>
                 <div>
                     <label for="acropolis-name">
-                        <i>Question 3</i>. What is the name of the hill which hosts, among other things, 
+                        <i>Question 3</i>. What is the name of the hill which hosts, among other things,
                         the temple just mentioned?
-                    </label><br>
-
+                    </label>
+                    <br>
                     <input type="text" id="acropolis-name" name="acropolis-name">
-                </div><hr>
-
+                </div>
+                <hr>
                 <div>
                     <label>
                         <i>Question 4</i>. Select pictures showing iconic landmarks or scenery of Athens.
-                    </label><br>
-
-                    <br>
+                    </label>
+                    <br><br>
                     <input type="checkbox" id="colosseum" name="athens-pictures" value="Colosseum">
                     <img src="images/colosseum.jpg" alt="A large, ancient, circular building."
                         style="width:200px; height:150px">
@@ -131,23 +118,23 @@
                     <input type="checkbox" id="theatre" name="athens-pictures" value="Theatre">
                     <img src="images/theatre.jpg" alt="An ancient theatre." style="width:200px; height:150px">
                     <input type="checkbox" id="aztec" name="athens-pictures" value="Aztec">
-                    <img src="images/aztec.jpg" alt="An ancient, triangle-shaped temple." style="width:200px; height:150px">
-                </div><hr>
-
+                    <img src="images/aztec.jpg" alt="An ancient, triangle-shaped temple."
+                        style="width:200px; height:150px">
+                </div>
+                <hr>
                 <div>
                     <label for="olympics-interval">
-                        <i>Question 5</i>. Every how many years are the Olympic Games held, which started 
+                        <i>Question 5</i>. Every how many years are the Olympic Games held, which started
                         in their modern form in 1896 in Athens?
-                    </label><br>
-
+                    </label>
+                    <br>
                     <input type="number" id="olympics-interval" name="olympics-interval" min="1">
-                </div><hr>
-
+                </div>
+                <hr>
                 <div>
                     <label>
                         <i>Question 6</i>. Which form of government is Athens said to be the cradle of?
                     </label><br>
-
                     <input type="radio" id="aristocracy" name="government-name" value="Aristocracy">
                     <label for="aristocracy">Aristocracy</label>
                     <input type="radio" id="oligarchy" name="government-name" value="Oligarchy">
@@ -157,24 +144,24 @@
                     <label for="tyranny">Tyranny</label>
                     <input type="radio" id="democracy" name="government-name" value="Democracy">
                     <label for="democracy">Democracy</label>
-                </div><hr>
-
+                </div>
+                <hr>
                 <div>
                     <label for="syntagma-name">
-                        <i>Question 7</i>. What is the name of the central square located in 
+                        <i>Question 7</i>. What is the name of the central square located in
                         the heart of Athens, just next to the Greek Parliament?
                     </label><br>
 
                     <input type="text" id="syntagma-name" name="syntagma-name">
-                </div><hr>
-
+                </div>
+                <hr>
                 <input type="submit" value="Show answers">
                 <input type="reset" value="Clear">
             </fieldset>
         </form>
-    </main><br>
-
-    <footer>
+    </main>
+    <br>
+    <footer class="main-margin">
         <a href="#header">Back to top</a>
         <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
     </footer>

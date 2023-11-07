@@ -1,28 +1,45 @@
-
 * {
     margin: 0;
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
- body {
-    margin-top: 50px;
- }
 
- #form {
+@media screen and (max-width: 1150px) {
+    #mainphoto img {
+        width: 95vw !important;
+        height: fit-content !important;
+    }
+}
+
+@page: first {
+    margin-left: 5cm;
+}
+
+body {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+#form {
     background-color: beige;
     background-image: url('https://cdni.iconscout.com/illustration/premium/thumb/parthenon-athens-3547597-2975172.png');
     background-attachment: fixed;
-    background-position: bottom right; 
+    background-position: bottom right;
     background-repeat: no-repeat;
- }
-
-.menu{
-    top:0px;
-    position: fixed;
-    width: 100%; 
-    color: black;
 }
 
+.menu {
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    color: black;
+}
 
 .menu a {
     text-decoration: none;
@@ -32,11 +49,9 @@
     display: inline-block;
 }
 
-
-.menu ul{
+.menu ul {
     list-style: none;
-   
-    }
+}
 
 .menu ul li {
     background-color: #e45e10;
@@ -51,24 +66,26 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
-    
-.menu ul li:hover{
+
+.menu ul li:hover {
     background-color: #ff9659;
 }
-.menu ul a:hover{
+
+.menu ul a:hover {
     color: green;
 }
-    
-.menu ul ul, .submenu ul{
+
+.menu ul ul,
+.submenu ul {
     display: none;
-    }
+}
 
 
-.menu ul ul ul{
+.menu ul ul ul {
     margin-left: 200px;
     top: 0;
     position: absolute;
-    }
+}
 
 .submenu ul li {
     background-color: wheat;
@@ -83,18 +100,19 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
-.submenu ul li:hover{
+
+.submenu ul li:hover {
     background-color: rgb(248, 238, 218);
 }
 
-.menu ul li:hover > ul {
+.menu ul li:hover>ul {
     display: block;
 }
 
 
 h1 {
     font-variant: small-caps;
-    font-size:40pt;
+    font-size: 40pt;
     margin: 10px 5px;
     font-weight: lighter;
     font-family: 'Times New Roman', Times, serif;
@@ -128,7 +146,7 @@ a {
 
 a:visited {
     color: rgb(88, 26, 26);
-    
+
 }
 
 a:active {
@@ -136,17 +154,17 @@ a:active {
 }
 
 a:link {
-    color: rgb(109, 0, 131);    
+    color: rgb(109, 0, 131);
 }
 
 summary {
-    margin: 20px 10px; 
+    margin: 20px 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #places-list li {
     margin-left: 10%;
-    font-weight:600;
+    font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -165,12 +183,10 @@ summary {
 
 }
 
-
 .semitransparent {
     background-color: rgba(255, 255, 255, 0.904);
     margin: 50px;
     padding: 30px;
-
 }
 
 img {
@@ -178,14 +194,14 @@ img {
     height: 35%;
 }
 
-#mainphoto  {
+#mainphoto {
     text-align: center;
 }
 
 #mainphoto img {
     width: 70em;
-    height: 50em;
-    border:8px dotted;
+    height: fit-content;
+    border: 8px dotted;
     border-radius: 80%;
 }
 
@@ -195,9 +211,8 @@ img {
     text-align: center;
     border-width: 8px;
     border-color: #e45e10;
-    border-style:double;
+    border-style: double;
     background-color: white;
-
 }
 
 .image-container {
@@ -206,5 +221,99 @@ img {
 
 .image-container img {
     display: inline-block;
-    border-radius: 10pt;  
+    border-radius: 10pt;
+}
+
+table,
+th,
+td {
+    position: static;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+tr:nth-child(even):not(#numbers tr) {
+    background-color: beige;
+}
+
+table:only-child {
+    border-width: 5px;
+}
+
+#administrative {
+    position: relative;
+    top: 7em;
+    left: 20%;
+}
+
+#administrative tr>th {
+    color: blue;
+}
+
+#numbers th:first-child,
+#numbers td:nth-last-child(2) {
+    background-color: rgba(238, 130, 238, 0.365);
+}
+
+#miscellaneous {
+    position: relative;
+    bottom: 10em;
+    left: 25%;
+}
+
+#miscellaneous tr:last-of-type {
+    background-color: rgba(229, 94, 16, 0.365) !important;
+}
+
+:target:not(header) {
+    background-color: rgba(255, 255, 0, 0.7);
+}
+
+.main-margin {
+    margin: 30px;
+}
+
+#quiz-questions input:focus,
+#quiz-questions select:focus,
+#quiz-questions input:checked+label,
+#quiz-questions input:hover+label {
+    background-color: rgba(255, 255, 0, 0.7);
+}
+
+#quiz-questions input:empty:not(input[type="submit"], input[type="reset"]) {
+    background-color: rgba(128, 128, 128, 0.5) !important;
+}
+
+#quiz-answers details:last-child {
+    border: 5px dotted red;
+}
+
+#quiz-answers img {
+    float: left;
+    margin-bottom: 1em;
+    margin-right: 1em;
+}
+
+#float-separator,
+#quiz-answers aside {
+    clear: left;
+}
+
+.personal-form input:required,
+.personal-form select:required {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.personal-form input:disabled {
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+#personal-form-aux input:enabled:not(input[type="submit"]) {
+    background-color: rgba(0, 128, 0, 0.5);
+}
+
+ol {
+    position: relative;
+    right: 4em;
 }
