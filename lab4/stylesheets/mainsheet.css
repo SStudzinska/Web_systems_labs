@@ -128,10 +128,15 @@ a {
 
 a:visited {
     color: rgb(88, 26, 26);
+    
 }
 
 a:active {
     color: blue;
+}
+
+a:link {
+    color: rgb(109, 0, 131);    
 }
 
 summary {
@@ -157,7 +162,9 @@ summary {
     margin: 50px;
     border-radius: 10px;
     padding: 30px;
+
 }
+
 
 .semitransparent {
     background-color: rgba(255, 255, 255, 0.904);
@@ -189,5 +196,15 @@ img {
     border-width: 8px;
     border-color: #e45e10;
     border-style:double;
+    background-color: white;
 
+}
+
+.image-container {
+    text-align: center;
+}
+
+.image-container img {
+    display: inline-block;
+    border-radius: 10pt;  
 }
