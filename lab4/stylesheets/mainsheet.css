@@ -39,6 +39,7 @@ main {
     position: fixed;
     width: 100%;
     color: black;
+    z-index: 10;
 }
 
 .menu a {
