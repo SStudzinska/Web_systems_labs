@@ -81,7 +81,6 @@ main {
     display: none;
 }
 
-
 .menu ul ul ul {
     margin-left: 200px;
     top: 0;
@@ -109,7 +108,6 @@ main {
 .menu ul li:hover>ul {
     display: block;
 }
-
 
 h1 {
     font-variant: small-caps;
@@ -240,16 +238,36 @@ tr:nth-child(even):not(#numbers tr) {
 
 table:only-child {
     border-width: 5px;
+    border-style: dotted;
+    border-color: green;
+}
+
+#geographic td {
+    padding: 1rem;
+}
+
+#geographic tr:nth-child(2) {
+    height: 5em;
+    vertical-align: bottom;
 }
 
 #administrative {
     position: relative;
-    top: 7em;
-    left: 20%;
+    top: 6.2em;
+    left: 27em;
+    border-collapse: collapse;
 }
 
 #administrative tr>th {
     color: blue;
+}
+
+#administrative td:not(:first-child) {
+    text-align: right;
+}
+
+#numbers th, #numbers td {
+    border: none;
 }
 
 #numbers th:first-child,
@@ -259,8 +277,9 @@ table:only-child {
 
 #miscellaneous {
     position: relative;
-    bottom: 10em;
-    left: 25%;
+    bottom: 23em;
+    left: 27em;
+    border-spacing: 5px;
 }
 
 #miscellaneous tr:last-of-type {
