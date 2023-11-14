@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
+    <title>Guess the Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: gainsboro;
+        }
+
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #e45e10;
+            color: black;
+            padding: 15px 32px;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            height: 50px;
+            width: 200px;    
+        }
+
+        .container {      
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+        }
+        input {
+            height: 20px;
+            width: 100px;
+            margin: 20px 25px;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav class="menu">
+            <ul>
+                <li><a href="main.html">Homepage</a></li>
+                <li class="submenu"><a href="#">Information</a>
+                    <ul>
+                        <li class="sub-submenu"><a href="#">About Athens</a>
+                            <ul>
+                                <li><a href="places_people.html">Places & People</a></li>
+                                <li><a href="data.html">Data</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-submenu"><a href="#">More info</a>
+                            <ul>
+                                <li><a href="https://en.wikipedia.org/wiki/Athens">Athens wiki</a></li>
+                                <li><a href="https://www.thisisathens.org/">Official Athens Guide</a></li>
+                                <li><a
+                                        href="https://www.google.com/maps?sca_esv=579179295&output=search&q=athens&source=lnms&entry=mc&sa=X&ved=2ahUKEwjBkaTqqqiCAxW__rsIHdczCq0Q0pQJegQIDhAB">Athens
+                                        On The Map</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="submenu"><a href="#">Other</a>
+                    <ul>
+                        <li class="sub-submenu"><a href="#">Forms</a>
+                            <ul>
+                                <li><a href="personal_form.html">Personal form</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-submenu"><a href="#">Quizes & Games</a>
+                            <ul>
+                                <li><a href="quiz_questions.html">Quiz</a></li>
+                                <li><a href="numbers.html">Guess The Number </a></li>
+                            </ul>
+                        </li>
+                        <li><a href="photos.zip">Download photos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Guess the Number Game</h1>
+    <p>Guess a number between 1 and 100:</p>
+    <div class="container">
+        <input type="number" id="userGuess" min="1" max="100">
+    </div>
+    <div class="container">
+        <button onclick="checkGuess()">Submit Guess</button>
+    </div>
+    <div class="container">
+        <button onclick="resetGame()">Try Again</button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+        let targetNumber;
+        let remainingAttempts;
+
+        function startGame() {
+            targetNumber = Math.floor(Math.random() * 100) + 1;
+            remainingAttempts = 3;
+            document.getElementById('userGuess').disabled = false;
+            document.getElementById('result').textContent = '';
+        }
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('userGuess').value);
+
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                alert('Please enter a valid number between 1 and 100.');
+                return;
+            }
+
+            remainingAttempts--;
+
+            if (userGuess === targetNumber) {
+                displayResult('Congratulations! You guessed the correct number.');
+            } else {
+                const hint = userGuess < targetNumber ? 'higher' : 'lower';
+                if (remainingAttempts > 0) {
+                    displayResult(`Wrong guess. Try again! The correct number is ${hint}. Remaining attempts: ${remainingAttempts}`);
+                } else {
+                    displayResult(`Sorry, you've run out of attempts. The correct number was ${targetNumber}.`);
+                    document.getElementById('userGuess').disabled = true;
+                }
+            }
+        }
+
+        function displayResult(message) {
+            document.getElementById('result').textContent = message;
+        }
+
+        function resetGame() {
+            startGame();
+            document.getElementById('userGuess').value = '';
+        }
+
+        startGame();
+    </script>
+</body>
+</html>
