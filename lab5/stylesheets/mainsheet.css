@@ -330,7 +330,7 @@ table:only-child {
     background-color: rgba(128, 128, 128, 0.5);
 }
 
-#personal-form-aux input:enabled:not(input[type="submit"]) {
+#personal-form-aux input:enabled:not(input[type="submit"], input[type="button"]) {
     background-color: rgba(0, 128, 0, 0.5);
 }
 

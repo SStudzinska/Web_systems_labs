@@ -84,7 +84,6 @@
             <img id="image"
                     src="images/athens1.png"
                     alt="Small picture of Athens" style="width:600px;height:380px;">        
-            <script src="backend/functions.js"></script>
         </article>
     </main>
     <br>
@@ -92,6 +91,33 @@
         <a href="#header">Back to top</a>
         <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
     </footer>
+
+    <script src="backend/functions.js"></script>
+    <script>
+        let currentImageIndex = 0;
+
+        window.addEventListener('keydown', (event) => {
+            if (event.defaultPrevented) {
+                return;
+            }
+
+            switch (event.key) {
+                case 'ArrowLeft':
+                    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                    showImage(currentImageIndex);
+                    break;
+                case 'ArrowRight':
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    showImage(currentImageIndex);
+                    break;
+                default:
+                    break;
+            }
+            event.preventDefault();
+        }, true);
+
+        showImage(currentImageIndex);
+    </script>
 </body>
 
 </html>

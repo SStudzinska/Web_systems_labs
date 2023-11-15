@@ -11,7 +11,7 @@
     <title>Athens – trivia quiz</title>
 </head>
 
-<body>
+<body id="quiz-body">
     <header id="header">
         <nav class="menu">
             <ul>
@@ -86,12 +86,12 @@
                         the goddess Athena?
                     </label>
                     <br>
-                    <input type="radio" id="pantheon" name="temple-name" value="Pantheon">
+                    <input type="radio" id="pantheon" name="parthenon-name" value="Pantheon">
                     <label for="pantheon">Pantheon</label>
-                    <input type="radio" id="parthenon" name="temple-name" value="Parthenon">
+                    <input type="radio" id="parthenon" name="parthenon-name" value="Parthenon">
                     <label for="parthenon">Parthenon</label>
                     <br>
-                    <input type="radio" id="temple-both" name="temple-name" value="Both">
+                    <input type="radio" id="temple-both" name="parthenon-name" value="Both">
                     <label for="temple-both">Both names are correct and interchangeable.</label>
                 </div>
                 <hr>
@@ -156,7 +156,7 @@
                     <input type="text" id="syntagma-name" name="syntagma-name">
                 </div>
                 <hr>
-                <input type="submit" value="Show answers">
+                <input type="submit" id="button-submit" value="Check answers">
                 <input type="reset" value="Clear">
             </fieldset>
         </form>
@@ -166,6 +166,24 @@
         <a href="#header">Back to top</a>
         <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
     </footer>
+
+    <script src="backend/functions.js"></script>
+    <script>
+        const quizAnswers = {
+            'city-size': 'seventh',
+            'parthenon-name': 'parthenon',
+            'acropolis-name': 'acropolis',
+            'athens-pictures': ['acropolis', 'theatre'],
+            'olympics-interval': '4',
+            'government-name': 'democracy',
+            'syntagma-name': 'syntagma square'
+        };
+
+        const buttonSubmit = document.getElementById('button-submit');
+        buttonSubmit.addEventListener('click', function(event) {
+            calculateScore(quizAnswers);
+        });
+    </script>
 </body>
 
 </html>
