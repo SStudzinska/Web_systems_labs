@@ -70,7 +70,9 @@
     </header>
 
     <main class="main-margin">
-        <h1>Personal form</h1>
+        <h1 id="title">Personal form</h1>
+        <input type="button" id="button-change-title" value="Change title">
+        <br><br>
         <form class="personal-form" autocomplete="on" action="personal_form_aux.html">
             <div>
                 <input type="text" name="name" id="name" autocomplete="given-name" autofocus>
@@ -128,6 +130,13 @@
     </footer>
 
     <script src="backend/functions.js"></script>
+    <script>
+        document.writeln(document.getElementById("title").innerHTML);
+        buttonChangeTitle = document.getElementById("button-change-title");
+        buttonChangeTitle.addEventListener("click", () => {
+            document.getElementById("title").innerHTML = window.prompt(`Enter a new page title:`);
+        });
+    </script>
 </body>
 
 </html>
