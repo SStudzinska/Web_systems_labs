@@ -338,3 +338,9 @@ ol {
     position: relative;
     right: 4em;
 }
+
+#image { 
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20%;
+}

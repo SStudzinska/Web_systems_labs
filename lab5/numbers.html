@@ -34,11 +34,7 @@
             justify-content: center;  
             align-items: center;  
         }
-        input {
-            height: 20px;
-            width: 100px;
-            margin: 20px 25px;
-        }
+   
     </style>
 </head>
 <body>
@@ -86,15 +82,8 @@
     </header>
 
     <h1>Guess the Number Game</h1>
-    <p>Guess a number between 1 and 100:</p>
     <div class="container">
-        <input type="number" id="userGuess" min="1" max="100">
-    </div>
-    <div class="container">
-        <button onclick="checkGuess()">Submit Guess</button>
-    </div>
-    <div class="container">
-        <button onclick="resetGame()">Try Again</button>
+        <button onclick="startGame()">Start the Game</button>
     </div>
     <p id="result"></p>
 
@@ -105,29 +94,37 @@
         function startGame() {
             targetNumber = Math.floor(Math.random() * 100) + 1;
             remainingAttempts = 3;
-            document.getElementById('userGuess').disabled = false;
             document.getElementById('result').textContent = '';
-        }
 
-        function checkGuess() {
-            const userGuess = parseInt(document.getElementById('userGuess').value);
+            for (let i = 0; i < 3; i++) {
+                const userGuess = window.prompt(`Attempt ${i + 1}: Enter a number between 1 and 100:`);
 
-            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-                alert('Please enter a valid number between 1 and 100.');
-                return;
-            }
+                if (userGuess === null) {
+                    // User clicked Cancel
+                    return;
+                }
 
-            remainingAttempts--;
+                const parsedGuess = parseInt(userGuess);
 
-            if (userGuess === targetNumber) {
-                displayResult('Congratulations! You guessed the correct number.');
-            } else {
-                const hint = userGuess < targetNumber ? 'higher' : 'lower';
-                if (remainingAttempts > 0) {
-                    displayResult(`Wrong guess. Try again! The correct number is ${hint}. Remaining attempts: ${remainingAttempts}`);
+                if (isNaN(parsedGuess) || parsedGuess < 1 || parsedGuess > 100) {
+                    window.alert('Please enter a valid number between 1 and 100.');
+                    i--; 
+                    continue;
+                }
+
+                remainingAttempts--;
+
+                if (parsedGuess === targetNumber) {
+                    displayResult(`Congratulations! You guessed the correct number in ${i + 1} attempts.`);
+                    break;
                 } else {
-                    displayResult(`Sorry, you've run out of attempts. The correct number was ${targetNumber}.`);
-                    document.getElementById('userGuess').disabled = true;
+                    const hint = parsedGuess < targetNumber ? 'higher' : 'lower';
+                    if (remainingAttempts > 0) {
+                        window.alert(`Wrong guess. Try again! The correct number is ${hint}. Remaining attempts: ${remainingAttempts}`);
+                    } else {
+                        displayResult(`Sorry, you've run out of attempts. The correct number was ${targetNumber}.`);
+                        break;
+                    }
                 }
             }
         }
@@ -135,13 +132,6 @@
         function displayResult(message) {
             document.getElementById('result').textContent = message;
         }
-
-        function resetGame() {
-            startGame();
-            document.getElementById('userGuess').value = '';
-        }
-
-        startGame();
     </script>
 </body>
 </html>
