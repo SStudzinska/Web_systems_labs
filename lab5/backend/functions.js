@@ -13,11 +13,11 @@ function getAnswer(question) {
 
     if (questionElement.type === 'radio') {
         const checkedAnswer = document.querySelector(`input[name="${questionElement.name}"]:checked`);
-        return checkedAnswer ? checkedAnswer.value : null;
+        return (checkedAnswer ? checkedAnswer.value : null);
     }
     if (questionElement.type === 'checkbox') {
         return Array.from(document.querySelectorAll(`input[name="${question}"]:checked`))
-            .map(checkbox => checkbox.value);
+            .map((checkbox) => checkbox.value);
     } else {
         return questionElement.value;
     }
@@ -41,7 +41,7 @@ function calculateScore(correctAnswers) {
         }
         if (Array.isArray(correctAnswers[question])) {
             const arrayAnswer = Array.isArray(answer) ? answer
-                .map(str => str.toLowerCase()) : [answer.toLowerCase()];
+                .map((str) => str.toLowerCase()) : [answer.toLowerCase()];
             if (arrayAnswerCorrect(arrayAnswer, correctAnswers[question])) {
                 score++;
             }
@@ -55,8 +55,9 @@ function calculateScore(correctAnswers) {
 
 function openFavoriteWebsite() {
     const favoriteWebsite = document.getElementById('favorite-website').value;
-    if (favoriteWebsite)
+    if (favoriteWebsite) {
         window.open(favoriteWebsite);
+    }
 }
 
 const backgroundColorChanger = document.getElementById('background-color-changer');
@@ -64,11 +65,11 @@ const textColorChanger = document.getElementById('text-color-changer');
 const fontFamilyChanger = document.getElementById('font-family-changer');
 
 function changeBackgroundColor() {
-    document.body.style.setProperty('background-color', backgroundColorChanger.value, 'important')
+    document.body.style.setProperty('background-color', backgroundColorChanger.value, 'important');
 }
 
 function changeTextColor() {
-    document.body.style.setProperty('color', textColorChanger.value, 'important')
+    document.body.style.setProperty('color', textColorChanger.value, 'important');
 }
 
 function changeFontFamily() {

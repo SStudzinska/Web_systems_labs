@@ -188,15 +188,15 @@
         };
 
         const buttonSubmit = document.getElementById('button-submit');
-        buttonSubmit.addEventListener('click', function(event) {
+        buttonSubmit.addEventListener('click', function() {
             calculateScore(quizAnswers);
         });
 
         const lowestPointInput = document.getElementById('lowest-point');
-        lowestPointInput.addEventListener('input', function(event){
+        lowestPointInput.addEventListener('input', function(){
             var userInput = document.getElementById('lowest-point').value;
             var result = parseFloat(userInput);
-            if (isNaN(result)) {
+            if (Number.isNaN(result)) {
                 alert('Invalid input. Please enter a valid floating-point number.');
             }
         });
