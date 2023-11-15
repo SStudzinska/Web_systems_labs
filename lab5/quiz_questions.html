@@ -156,6 +156,13 @@
                     <input type="text" id="syntagma-name" name="syntagma-name">
                 </div>
                 <hr>
+                <div>
+                    <label for="lowest-point">
+                        <i>Question 8</i>. How high is the lowest elevation point in Athens?
+                    </label><br>
+                    <input type="text" id="lowest-point" name="lowest-point">
+                </div>
+                <hr>
                 <input type="submit" id="button-submit" value="Check answers">
                 <input type="reset" value="Clear">
             </fieldset>
@@ -176,12 +183,22 @@
             'athens-pictures': ['acropolis', 'theatre'],
             'olympics-interval': '4',
             'government-name': 'democracy',
-            'syntagma-name': 'syntagma square'
+            'syntagma-name': 'syntagma square',
+            'lowest-point': '70.1'
         };
 
         const buttonSubmit = document.getElementById('button-submit');
         buttonSubmit.addEventListener('click', function(event) {
             calculateScore(quizAnswers);
+        });
+
+        const lowestPointInput = document.getElementById('lowest-point');
+        lowestPointInput.addEventListener('input', function(event){
+            var userInput = document.getElementById('lowest-point').value;
+            var result = parseFloat(userInput);
+            if (isNaN(result)) {
+                alert('Invalid input. Please enter a valid floating-point number.');
+            }
         });
     </script>
 </body>
