@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="numbers, guessing, game, fun">
+    <meta name="description" content="This is a simple number guessing game.">
+    <link rel="icon" type="image/x-icon" href="https://w7.pngwing.com/pngs/222/896/png-transparent-gray-and-black-1-logo-computer-icons-favicon-number-simple-miscellaneous-angle-text-thumbnail.png">
     <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
     <title>Guess the Number</title>
     <style>
@@ -108,7 +111,7 @@
 
                 if (isNaN(parsedGuess) || parsedGuess < 1 || parsedGuess > 100) {
                     window.alert('Please enter a valid number between 1 and 100.');
-                    i--; 
+                    i--;
                     continue;
                 }
 
