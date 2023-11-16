@@ -193,11 +193,15 @@
         });
 
         const lowestPointInput = document.getElementById('lowest-point');
-        lowestPointInput.addEventListener('input', function(){
+        const lowestPointInputPrevious = lowestPointInput.value;
+        lowestPointInput.addEventListener('input', function() {
             var userInput = document.getElementById('lowest-point').value;
+            if (userInput == "")
+                return;
             var result = parseFloat(userInput);
             if (Number.isNaN(result)) {
                 alert('Invalid input. Please enter a valid floating-point number.');
+                document.getElementById('lowest-point').value = lowestPointInputPrevious;
             }
         });
     </script>
