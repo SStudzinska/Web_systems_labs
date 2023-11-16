@@ -339,8 +339,42 @@ ol {
     right: 4em;
 }
 
+button {
+    background-color: #e45e10;
+    color: black;
+    padding: 15px 32px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    height: 50px;
+    width: 200px;    
+}
+
 #image { 
     padding: 20px;
     margin: 10px;
     border-radius: 20%;
+    width: 600px;
+    height: 380px;
 }
+
+.zoomable {
+    transition: transform 0.3s ease-in-out;
+}
+
+.zoomable:hover {
+    cursor: zoom-in;
+    filter: brightness(90%);
+  }
+
+.zoomed {
+    transform: scale(1.5);
+}
+
+
+#drawingCanvas {
+    position: relative;
+    background-color: white;
+    border: 1px solid #000;
+    margin: 25px;
+  }

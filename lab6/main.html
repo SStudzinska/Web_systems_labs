@@ -8,6 +8,7 @@
     <meta name="description" content="This is a site about Athens, a city in Greece. It contains useful information.">
     <link rel="icon" type="image/x-icon" href="https://cdn3.iconfinder.com/data/icons/vol-2/128/column-512.png">
     <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
+    <script src="backend/keyevents.js" defer></script>
     <title>Athens – everything you need to know</title>
     <style>
         body {
@@ -81,9 +82,11 @@
             <p>&gt;&gt;&gt; Click <a href="photos.zip">here</a> to download a zip file with beautiful photos of Athens
                 in full size! &lt;&lt;&lt;</p>
             <p><mark>Click the right or left arrow on your keyboard to view the next photo!</mark></p>    
-            <img id="image"
-                    src="images/athens1.png"
-                    alt="Small picture of Athens" style="width:600px;height:380px;">        
+             <img  id="image" class="zoomable" src="images/athens1.png"
+                alt="Small picture of Athens">
+            <p>Press Alt to draw on the canvas below!</p>
+            <canvas id="drawingCanvas" width="800" height="600"></canvas>
+            <button id="resetButton">Reset Canvas</button>     
         </article>
     </main>
     <br>
