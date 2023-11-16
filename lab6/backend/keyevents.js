@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let isShiftPressed = false;
     let isAltPressed = false;
     let isCtrlPressed = false;
+    let isKeyPressed = false;
 
     document.addEventListener('keydown', function (event) {
       if (event.shiftKey) {
@@ -15,12 +16,23 @@ document.addEventListener('DOMContentLoaded', function () {
       else if(event.ctrlKey){
         isCtrlPressed = true;
       }
+      else if(event.keyCode === 90){
+        isKeyPressed = true;
+
+      }
     });
 
     document.addEventListener('keyup', function (event) {
         isShiftPressed = false;
         isAltPressed = false;
         isCtrlPressed = false;
+        isKeyPressed = false;
+    });
+
+    window.addEventListener('keydown', function(event){
+        if (isKeyPressed && isCtrlPressed){
+            window.location.href = 'main.html';
+        }
     });
 
     document.addEventListener('mouseover', function (event) {
@@ -31,6 +43,18 @@ document.addEventListener('DOMContentLoaded', function () {
         hoveredElement.classList.remove('zoomed');
       }
     });
+
+    document.addEventListener('mousemove', function(event){
+        const coordinates = document.getElementById('coordinates');
+        if (isCtrlPressed){
+            coordinates.textContent = `X: ${event.screenX}, Y: ${event.screenY}`;
+      }
+        else {
+            coordinates.textContent= ``;
+        }
+        });
+
+        
 
     let isDrawing = false;
     const drawingCanvas = document.getElementById('drawingCanvas');
