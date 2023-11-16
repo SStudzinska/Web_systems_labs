@@ -86,13 +86,15 @@
 
     <h1>Guess the Number Game</h1>
     <div class="container">
-        <button onclick="startGame()">Start the Game</button>
+        <button id ="game">Start the Game</button>
     </div>
     <p id="result"></p>
 
     <script>
         let targetNumber;
         let remainingAttempts;
+        const button = document.getElementById("game")
+        button.addEventListener("click", startGame, false)
 
         function startGame() {
             targetNumber = Math.floor(Math.random() * 100) + 1;
