@@ -98,10 +98,10 @@
 
         function startGame() {
             targetNumber = Math.floor(Math.random() * 100) + 1;
-            remainingAttempts = 3;
+            remainingAttempts = 10;
             document.getElementById('result').textContent = '';
 
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 10; i++) {
                 const userGuess = window.prompt(`Attempt ${i + 1}: Enter a number between 1 and 100:`);
 
                 if (userGuess === null) {
