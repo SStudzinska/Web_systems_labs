@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
     <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
     <script src="backend/keyevents.js" defer></script>
+    <script src="backend/collectionevents.js" defer></script>
     <title>Personal form</title>
 </head>
 
@@ -53,6 +54,7 @@
                     </ul>
                 </li>
             </ul>
+            </nav>
             <br>&nbsp;&nbsp;&nbsp;
             <label for="background-color-changer">Background</label>
             <input type="color" id="background-color-changer" value="#ffffff" onchange="changeBackgroundColor()">
@@ -67,7 +69,6 @@
                 <option value="Times New Roman">Times New Roman</option>
                 <option value="Courier New">Courier New</option>
             </select>
-        </nav>
     </header>
 
     <main class="main-margin">
@@ -125,6 +126,8 @@
         </form>
     </main>
     <br>
+    <button id="dataButton">Statistics</button>
+    <p id="statisticsInfo"></p> 
     <footer class="main-margin">
         <a href="#header">Back to top</a>
         <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>

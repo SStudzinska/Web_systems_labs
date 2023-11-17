@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/6406/6406590.png">
     <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
     <script src="backend/keyevents.js" defer></script>
+    <script src="backend/collectionevents.js" defer></script>
     <title>Famous Places and People in Athens</title>
     <style>
         body {
@@ -69,8 +70,8 @@
                 if you have the chance!</p>
 
             <ol type="I">
-                <li><a href="#Parthenon">Parthenon</a></li>
-                <li><a href="#Acropolis_Museum">Acropolis Museum</a></li>
+                <li><a href="#Parthenon" name="Parhenon">Parthenon</a></li>
+                <li><a href="#Acropolis_Museum" name="Acropolis_Musuem">Acropolis Museum</a></li>
                 <li><a href="#Library">Hadrian's Library</a></li>
                 <li><a href="#Stadium">Panathenaic Stadium</a></li>
                 <li><a href="#Cemetery">First Cemetery of Athens</a></li>
@@ -337,6 +338,10 @@
             </article>
     </main>
     <br>
+    <section class="semitransparent">
+        <button id="dataButton">Statistics</button>
+        <p id="statisticsInfo"></p> 
+    </section>
     <footer class="semitransparent">
         <a href="#header">Back to top</a>
         <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
