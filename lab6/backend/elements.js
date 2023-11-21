@@ -1,3 +1,5 @@
+'use strict';
+
 const newListElement_1 = document.createElement('li');
 const newContent_1 = document.createTextNode('Alcibiades');
 newListElement_1.appendChild(newContent_1);

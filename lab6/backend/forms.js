@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const phoneNumberInput = document.getElementById('phonenumber');
 const phoneNumberHint = document.getElementById('phonenumber-hint');
