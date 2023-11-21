@@ -79,13 +79,11 @@
             <div>
                 <input type="text" name="name" id="name" autocomplete="given-name" autofocus>
                 <label for="name">Name</label>
-                <br>
             </div>
             <hr>
             <div>
                 <input type="text" name="surname" id="surname" autocomplete="family-name" required>
                 <label for="surname">Surname</label>
-                <br>
             </div>
             <hr>
             <div>
@@ -105,13 +103,12 @@
                     <option value="December">
                 </datalist>
                 <label for="birthMonth">Birth month</label>
-                <br>
             </div>
             <hr>
             <div>
                 <input type="email" name="email" id="email" autocomplete="email" required>
                 <label for="email">E-mail</label>
-                <br>
+                <div id="email-error" class="error"></div>
             </div>
             <hr>
             <div>
@@ -119,10 +116,11 @@
                     pattern="\+\d{2} \d{3}-\d{3}-\d{3}"
                     title="Fill in your phone number using the format +XX XXX-XXX-XXX">
                 <label for="phonenumber">Phone number</label>
+                <div id="phonenumber-hint" class="hint"></div>
             </div>
             <hr>
-
-            <input type="submit" value="Continue">
+            <input type="submit" id="button-submit" value="Continue">
+            <input type="reset" id="button-reset">
         </form>
     </main>
     <br>
@@ -134,13 +132,14 @@
     </footer>
 
     <script src="backend/functions.js"></script>
+    <script src="backend/forms.js"></script>
     <script>
-        document.writeln(document.getElementById("title").innerHTML);
         buttonChangeTitle = document.getElementById("button-change-title");
         buttonChangeTitle.addEventListener("click", () => {
             document.getElementById("title").innerHTML = window.prompt(`Enter a new page title:`);
         });
     </script>
+
 </body>
 
 </html>

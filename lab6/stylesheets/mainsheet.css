@@ -321,16 +321,11 @@ table:only-child {
     clear: left;
 }
 
-.personal-form input:required,
-.personal-form select:required {
-    background-color: rgba(255, 0, 0, 0.5);
-}
-
 .personal-form input:disabled {
     background-color: rgba(128, 128, 128, 0.5);
 }
 
-#personal-form-aux input:enabled:not(input[type="submit"], input[type="button"]) {
+#personal-form-aux input:enabled:not(input[type="submit"], input[type="reset"], input[type="button"]) {
     background-color: rgba(0, 128, 0, 0.5);
 }
 
@@ -348,6 +343,11 @@ button {
     cursor: pointer;
     height: 50px;
     width: 200px;    
+}
+
+.element-button {
+    height: fit-content;
+    width: fit-content;
 }
 
 #image { 
@@ -378,3 +378,17 @@ button {
     border: 1px solid #000;
     margin: 25px;
   }
+
+.invalid {
+    border-color: red;
+}
+
+.error {
+    color: red;
+    font-size: small;
+}
+
+.hint {
+    color: gray;
+    font-size: small;
+}
