@@ -44,7 +44,7 @@ buttonReplace_2.onclick = function () {
 
 const buttonRemoveSection = document.getElementById('button-remove-section');
 buttonRemoveSection.onclick = function () {
-    sectionParent = atheniansList.parentNode.parentNode;
+    const sectionParent = atheniansList.parentNode.parentNode;
     section = sectionParent.removeChild(sectionParent.children[1]);
 
     const buttonRestoreSection = document.createElement('button');
