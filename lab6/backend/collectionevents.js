@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 document.addEventListener("DOMContentLoaded", function() {
     const imagesCollection = document.images;

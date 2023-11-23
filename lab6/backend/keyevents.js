@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 document.addEventListener('DOMContentLoaded', function () {
     let isShiftPressed = false;
@@ -91,10 +91,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      const resetButton = document.getElementById('resetButton');
-      resetButton.addEventListener('click', function () {
+      drawingCanvas.addEventListener('mouseout', function(){
         context.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
-      });
+
+      })
 
   });
 
