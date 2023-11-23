@@ -1,6 +1,6 @@
 'use strict';
 
-const newListElement_1 = document.createElement('li');
+/* const newListElement_1 = document.createElement('li');
 const newContent_1 = document.createTextNode('Alcibiades');
 newListElement_1.appendChild(newContent_1);
 
@@ -60,4 +60,39 @@ buttonRemoveSection.onclick = function () {
         }
 
     }
+} */
+
+
+
+
+const atheniansList = document.getElementById('athenians-list').children[1];
+
+
+const buttonInsert = document.getElementById('button-insert');
+const insertAthenian = document.getElementById('insert-athenian');
+const insertIndex = document.getElementById('insert-index');
+
+buttonInsert.onclick = function () {
+    const newListElement = document.createElement('li');
+    const newContent = document.createTextNode(insertAthenian.value);
+    newListElement.appendChild(newContent);
+    atheniansList.insertBefore(newListElement, atheniansList.children[insertIndex.value-1]);
+}
+
+const buttonReplace = document.getElementById('button-replace');
+const replaceAthenian = document.getElementById('replace-athenian');
+const replaceIndex = document.getElementById('replace-index');
+
+buttonReplace.onclick = function () {
+    const newListElement = document.createElement('li');
+    const newContent = document.createTextNode(replaceAthenian.value);
+    newListElement.appendChild(newContent);
+    atheniansList.replaceChild(newListElement, atheniansList.children[replaceIndex.value-1]);
+}
+
+const buttonRemove = document.getElementById('button-remove');
+const removeIndex = document.getElementById('remove-index');
+
+buttonRemove.onclick = function () {
+    atheniansList.removeChild(atheniansList.children[removeIndex.value-1]);
 }
