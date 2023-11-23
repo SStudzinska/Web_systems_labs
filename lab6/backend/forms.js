@@ -34,15 +34,12 @@ if (emailInput != null) {
 }
 
 
-const buttonSubmit = document.getElementById('button-submit');
-const buttonReset = document.getElementById('button-reset');
-
-buttonSubmit.onclick = function () {
+window.onsubmit = function () {
     if (emailInput != null && emailInput.classList.contains('invalid'))
         return false;
     return window.confirm('Are you sure you want to submit provided information?');
 }
 
-buttonReset.onclick = function () {
+window.onreset = function () {
     return window.confirm('Are you sure you want to clear the form?')
 }
