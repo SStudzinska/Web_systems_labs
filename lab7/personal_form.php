@@ -1,0 +1,200 @@
+<?php
+// Initialize variables to store form data
+$name = $surname = $birthMonth = $email = $phonenumber = '';
+$errors = [];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = $_POST["name"];
+    $surname = $_POST["surname"];
+    $birthMonth = $_POST["birthMonth"];
+    $email = $_POST["email"];
+    $phonenumber = $_POST["phonenumber"];
+
+    if (!empty($name) && !preg_match("/^[\p{L} ]+$/u", $name)) {
+        $errors[] = "Wrong name input!";
+    }
+
+    if (!preg_match("/^[\p{L} ]+$/u", $surname)) {
+        $errors[] = "Wrong surname input!";
+    }
+
+    $allowedMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    if (!empty($birthMonth) && !in_array($birthMonth, $allowedMonths)) {
+        $errors[] = "Wrong birth month!";
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Wrong email input!";
+    }
+
+    if (!empty($phonenumber)) {
+        $phonenumber = preg_replace('/[^\d+]/', '', $phonenumber);
+        if (!preg_match("/^\+\d{2} \d{3}-\d{3}-\d{3}$/", $phonenumber)) {
+            $errors[] = "Wrong phone number input!";
+        }
+    }
+
+    if (empty($errors)) {
+        header("Location: personal_form_aux.php");
+        die();
+    }
+}
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="information, yourself, name, surname, birthday, email, phone">
+    <meta name="description" content="This website contains a form to fill with personal information about yourself.">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
+    <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
+    <script src="backend/keyevents.js" defer></script>
+    <script src="backend/collectionevents.js" defer></script>
+    <title>Personal form</title>
+</head>
+
+<body id="form">
+    <header id="header">
+        <nav class="menu">
+            <ul>
+                <li><a href="main.html">Homepage</a></li>
+                <li class="submenu"><a href="#">Information</a>
+                    <ul>
+                        <li class="sub-submenu"><a href="#">About Athens</a>
+                            <ul>
+                                <li><a href="places_people.html">Places & People</a></li>
+                                <li><a href="data.html">Data</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-submenu"><a href="#">More info</a>
+                            <ul>
+                                <li><a href="https://en.wikipedia.org/wiki/Athens">Athens wiki</a></li>
+                                <li><a href="https://www.thisisathens.org/">Official Athens Guide</a></li>
+                                <li><a
+                                        href="https://www.google.com/maps?sca_esv=579179295&output=search&q=athens&source=lnms&entry=mc&sa=X&ved=2ahUKEwjBkaTqqqiCAxW__rsIHdczCq0Q0pQJegQIDhAB">Athens
+                                        On The Map</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="submenu"><a href="#">Other</a>
+                    <ul>
+                        <li class="sub-submenu"><a href="#">Forms</a>
+                            <ul>
+                                <li><a href="personal_form.php">Personal form</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-submenu"><a href="#">Quizes & Games</a>
+                            <ul>
+                                <li><a href="quiz_questions.html">Quiz</a></li>
+                                <li><a href="numbers.html">Guess The Number </a></li>
+                            </ul>
+                        </li>
+                        <li><a href="photos.zip">Download photos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <br>&nbsp;&nbsp;&nbsp;
+        <label for="background-color-changer">Background</label>
+        <input type="color" id="background-color-changer" value="#f5f5dc" onchange="changeBackgroundColor()">
+        <label for="text-color-changer">Text</label>
+        <input type="color" id="text-color-changer" value="#000000" onchange="changeTextColor()">
+        <label for="font-family-changer">Font</label>
+        <select id="font-family-changer" onchange="changeFontFamily()">
+            <option value="Verdana">Verdana</option>
+            <option value="Geneva">Geneva</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+        </select>
+    </header>
+
+    <main class="main-margin">
+        <h1 id="title">Personal form</h1>
+        <input type="button" id="button-change-title" value="Change title">
+        <br><br>
+        <form class="personal-form" autocomplete="on" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+            <div>
+            <input type="text" name="name" id="name" autocomplete="given-name" autofocus>
+                <label for="name">Name</label>
+            </div>
+            <hr>
+            <div>
+                <input type="text" name="surname" id="surname" autocomplete="family-name" required>
+                <label for="surname">Surname</label>
+            </div>
+            <hr>
+            <div>
+                <input list="months" id="birthMonth" name="birthMonth" autocomplete="bday-month">
+                <datalist id="months">
+                    <option value="January">
+                    <option value="February">
+                    <option value="March">
+                    <option value="April">
+                    <option value="May">
+                    <option value="June">
+                    <option value="July">
+                    <option value="August">
+                    <option value="September">
+                    <option value="October">
+                    <option value="November">
+                    <option value="December">
+                </datalist>
+                <label for="birthMonth">Birth month</label>
+            </div>
+            <hr>
+            <div>
+                <input type="email" name="email" id="email" autocomplete="email" required>
+                <label for="email">E-mail</label>
+                <div id="email-error" class="error"></div>
+            </div>
+            <hr>
+            <div>
+                <input type="tel" name="phonenumber" id="phonenumber" autocomplete="tel"
+                    pattern="\+\d{2} \d{3}-\d{3}-\d{3}"
+                    title="Fill in your phone number using the format +XX XXX-XXX-XXX">
+                <label for="phonenumber">Phone number</label>
+                <div id="phonenumber-hint" class="hint"></div>
+            </div>
+            <hr>
+            <input type="submit" id="button-submit" value="Continue">
+            <input type="reset" id="button-reset">
+        </form>
+        <?php
+      foreach ($errors as $error) {
+        echo '<p style="color: red;">' . $error . "<br>" . '</p>';
+    }
+        ?>
+    </main>
+    <br>
+ 
+    <button id="dataButton">Statistics</button>
+    <p id="statisticsInfo"></p> 
+    <footer class="main-margin">
+        <a href="#header">Back to top</a>
+        <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
+    </footer>
+
+    <script src="backend/functions.js"></script>
+    <script src="backend/styles.js"></script>
+    <script src="backend/forms.js"></script>
+    <script>
+        buttonChangeTitle = document.getElementById("button-change-title");
+        buttonChangeTitle.addEventListener("click", () => {
+            document.getElementById("title").innerHTML = window.prompt(`Enter a new page title:`);
+        });
+    </script>
+
+
+
+</body>
+
+</html>
