@@ -11,11 +11,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $phonenumber = $_POST["phonenumber"];
 
-    if (!empty($name) && !preg_match("/^[\p{L} ]+$/u", $name)) {
+    $cleanedName = preg_replace('/\d/', '', $name);
+    $cleanedSurname = preg_replace('/\d/', '', $surname);
+
+
+    if (!empty($cleanedName) && !preg_match("/^[\p{L} ]+$/u", $cleanedName)) {
         $errors[] = "Wrong name input!";
     }
 
-    if (!preg_match("/^[\p{L} ]+$/u", $surname)) {
+    if (!preg_match("/^[\p{L} ]+$/u", $cleanedSurname)) {
         $errors[] = "Wrong surname input!";
     }
 
@@ -29,11 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!empty($phonenumber)) {
-        $phonenumber = preg_replace('/[^\d+]/', '', $phonenumber);
-        if (!preg_match("/^\+\d{2} \d{3}-\d{3}-\d{3}$/", $phonenumber)) {
-            $errors[] = "Wrong phone number input!";
+        if (!preg_match('/^\+\d{2} \d{3}-\d{3}-\d{3}$/', $phonenumber)) {
+            $errors[] = "Wrong phone input!";
         }
-    }
+    }   
 
     if (empty($errors)) {
         header("Location: personal_form_aux.php");
@@ -159,7 +162,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <hr>
             <div>
                 <input type="tel" name="phonenumber" id="phonenumber" autocomplete="tel"
-                    pattern="\+\d{2} \d{3}-\d{3}-\d{3}"
                     title="Fill in your phone number using the format +XX XXX-XXX-XXX">
                 <label for="phonenumber">Phone number</label>
                 <div id="phonenumber-hint" class="hint"></div>
