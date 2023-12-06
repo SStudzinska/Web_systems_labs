@@ -1,7 +1,12 @@
 <?php
 $errors = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $olympicsInterval = $_POST["olympics-interval"] ?? '';
     $lowestPoint = $_POST["lowest-point"] ?? '';
+
+    if (!empty($olympicsInterval) && !preg_match("/^\d+$/", $olympicsInterval)) {
+        $errors[] = "Wrong number input in Question 5. Must be an integer.";
+    }
 
     if (!empty($lowestPoint) && !preg_match("/^\d+.\d{1,2}$/", $lowestPoint)) {
         $errors[] = "Wrong height input in Question 8. Must be a decimal (with 2 decimal places at most).";
