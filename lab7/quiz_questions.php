@@ -1,3 +1,33 @@
+<?php
+$errors = [];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $lowestPoint = $_POST["lowest-point"] ?? '';
+
+    if (!empty($lowestPoint) && !preg_match("/^\d+.\d{1,2}$/", $lowestPoint)) {
+        $errors[] = "Wrong height input in Question 8. Must be a decimal (with 2 decimal places at most).";
+    }
+
+    if (empty($errors)) {
+        session_start();
+
+        $_SESSION = [
+            "city-size"         => $_POST["city-size"] ?? '',
+            "parthenon-name"    => $_POST["parthenon-name"] ?? '',
+            "acropolis-name"    => $_POST["acropolis-name"] ?? '',
+            "athens-pictures"   => $_POST["athens-pictures"] ?? [],
+            "olympics-interval" => $_POST["olympics-interval"] ?? '',
+            "government-name"   => $_POST["government-name"] ?? '',
+            "syntagma-name"     => $_POST["syntagma-name"] ?? '',
+            "lowest-point"      => $_POST["lowest-point"] ?? ''
+        ];
+
+        header("Location: quiz_answers.php");
+        die();
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +75,7 @@
                         </li>
                         <li class="sub-submenu"><a href="#">Quizes & Games</a>
                             <ul>
-                                <li><a href="quiz_questions.html">Quiz</a></li>
+                                <li><a href="quiz_questions.php">Quiz</a></li>
                                 <li><a href="numbers.html">Guess The Number </a></li>
                             </ul>
                         </li>
@@ -58,7 +88,7 @@
 
     <main class="main-margin">
         <h1>Athens – trivia quiz</h1>
-        <form action="quiz_answers.html">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             <fieldset id="quiz-questions">
                 <legend>Quiz</legend>
                 <div>
@@ -110,16 +140,16 @@
                         <i>Question 4</i>. Select pictures showing iconic landmarks or scenery of Athens.
                     </label>
                     <br><br>
-                    <input type="checkbox" id="colosseum" name="athens-pictures" value="Colosseum">
+                    <input type="checkbox" id="colosseum" name="athens-pictures[]" value="Colosseum">
                     <img src="images/colosseum.jpg" class="zoomable" alt="A large, ancient, circular building."
                         style="width:200px; height:150px">
-                    <input type="checkbox" id="acropolis" name="athens-pictures" value="Acropolis">
+                    <input type="checkbox" id="acropolis" name="athens-pictures[]" value="Acropolis">
                     <img src="images/acropolis.webp" class="zoomable" alt="A hill with ancient ruins on it."
                         style="width:225px; height:150px">
                     <br>
-                    <input type="checkbox" id="theatre" alt="athens-pictures" value="Theatre">
+                    <input type="checkbox" id="theatre" name="athens-pictures[]" value="Theatre">
                     <img src="images/theatre.jpg" class="zoomable" alt="An ancient theatre." style="width:200px; height:150px">
-                    <input type="checkbox" id="aztec"  name="athens-pictures" value="Aztec">
+                    <input type="checkbox" id="aztec"  name="athens-pictures[]" value="Aztec">
                     <img src="images/aztec.jpg" alt="An ancient, triangle-shaped temple." class="zoomable"
                         style="width:200px; height:150px">
                 </div>
@@ -159,7 +189,7 @@
                 <hr>
                 <div>
                     <label for="lowest-point">
-                        <i>Question 8</i>. How high is the lowest elevation point in Athens?
+                        <i>Question 8</i>. How high (in meters) is the lowest elevation point in Athens?
                     </label><br>
                     <input type="text" id="lowest-point" name="lowest-point">
                 </div>
@@ -168,6 +198,11 @@
                 <input type="reset" value="Clear">
             </fieldset>
         </form>
+        <?php
+        foreach ($errors as $error) {
+            echo '<br><p style="color: red">' . $error . '</p>';
+        }
+        ?>
     </main>
     <br>
     <footer class="main-margin">
@@ -175,7 +210,7 @@
         <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
     </footer>
 
-    <script src="backend/functions.js"></script>
+<!--     <script src="backend/functions.js"></script>
     <script>
         const quizAnswers = {
             'city-size': 'seventh',
@@ -205,7 +240,7 @@
                 document.getElementById('lowest-point').value = lowestPointInputPrevious;
             }
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

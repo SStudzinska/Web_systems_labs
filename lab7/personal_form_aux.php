@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                         <li class="sub-submenu"><a href="#">Quizes & Games</a>
                             <ul>
-                                <li><a href="quiz_questions.html">Quiz</a></li>
+                                <li><a href="quiz_questions.php">Quiz</a></li>
                                 <li><a href="numbers.html">Guess The Number </a></li>
                             </ul>
                         </li>

@@ -1,3 +1,66 @@
+<?php
+session_start();
+
+define('QUIZ_ANSWERS', [
+    'city-size'         => 'seventh',
+    'parthenon-name'    => 'parthenon',
+    'acropolis-name'    => 'acropolis',
+    'athens-pictures'   => ['Acropolis', 'Theatre'],
+    'olympics-interval' => 4,
+    'government-name'   => 'democracy',
+    'syntagma-name'     => 'syntagma square',
+    'lowest-point'      => 70.1
+]);
+
+$userAnswers = [
+    'city-size'         => validateInput($_SESSION['city-size'] ?? ''),
+    'parthenon-name'    => validateInput($_SESSION['parthenon-name'] ?? ''),
+    'acropolis-name'    => validateInput($_SESSION['acropolis-name'] ?? ''),
+    'athens-pictures'   => validateInput($_SESSION['athens-pictures'] ?? []),
+    'olympics-interval' => (int) validateInput($_SESSION['olympics-interval'] ?? ''),
+    'government-name'   => validateInput($_SESSION['government-name'] ?? ''),
+    'syntagma-name'     => validateInput($_SESSION['syntagma-name'] ?? ''),
+    'lowest-point'      => (float) validateInput($_SESSION['lowest-point'] ?? '')
+];
+
+$correctAnswerCount = 0;
+$questionCount = count(QUIZ_ANSWERS);
+$quizAnswers = constant('QUIZ_ANSWERS');
+for (reset($quizAnswers); $question = key($quizAnswers); next($quizAnswers)) {
+    $userAnswer = $userAnswers[$question];
+    $quizAnswer = QUIZ_ANSWERS[$question];
+
+    if (is_array($userAnswer)) {
+        sort($userAnswer);
+        sort($quizAnswer);
+        $correctAnswerCount += ($userAnswer === $quizAnswer);
+    } else {
+        if (is_string($userAnswer)) {
+            $stringDifference = strcmp(strtolower($userAnswer), $quizAnswer);
+            $correctAnswerCount += $stringDifference == "0";
+        } else {
+            $correctAnswerCount += ($userAnswer === $quizAnswer);
+        }
+    }
+}
+
+$resultMessage = "You got <span style=\"color: green\">$correctAnswerCount</span> 
+                  out of <span style=\"color: red\">$questionCount</span> answers right.";
+
+
+function validateInput($input) {
+    if (is_array($input)) {
+        $input = array_map('validateInput', $input);
+    } else {
+        $input = trim($input);
+        $input = stripslashes($input);
+        $input = htmlspecialchars($input);
+    }
+    return $input;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +108,7 @@
                         </li>
                         <li class="sub-submenu"><a href="#">Quizes & Games</a>
                             <ul>
-                                <li><a href="quiz_questions.html">Quiz</a></li>
+                                <li><a href="quiz_questions.php">Quiz</a></li>
                                 <li><a href="numbers.html">Guess The Number </a></li>
                             </ul>
                         </li>
@@ -58,6 +121,11 @@
 
     <main class="main-margin">
         <h1>Athens – trivia quiz</h1>
+        <?php 
+        if (isset($resultMessage)) {
+            echo '<p style="font-weight: bold; font-size: 1.1em; margin: 1.4em">' . $resultMessage . '</p>';
+        }
+        ?>
         <fieldset id="quiz-answers">
             <legend>Answers</legend>
             <details>
@@ -127,7 +195,7 @@
             <hr>
             <details>
                 <summary>
-                    <i>Question 8</i>. How high is the lowest elevation point in Athens?
+                    <i>Question 8</i>. How high (in meters) is the lowest elevation point in Athens?
                 </summary>
                 The lowest elevation point in Athens is <b>70.1</b>m.
             </details>
