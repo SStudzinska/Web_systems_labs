@@ -1,4 +1,9 @@
 <?php
+
+
+
+
+
 session_start();
 
 define('QUIZ_ANSWERS', [
@@ -58,6 +63,20 @@ function validateInput($input) {
     }
     return $input;
 }
+
+
+
+$style='';
+if (isset($_COOKIE["darkMode"]) && $_COOKIE["darkMode"] === 'true') {
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/darkmode.css">';
+}
+else if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true'){
+   $style = '<link rel="stylesheet" type="text/css" href="stylesheets/rainbowmode.css">';
+}
+else {
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">';
+} 
+
 ?>
 
 
@@ -70,7 +89,7 @@ function validateInput($input) {
     <meta name="keywords" content="Athens, Greece, city, information, quiz, trivia, answers">
     <meta name="description" content="On this site you can verify your answers to the trivia quiz about Athens.">
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
-    <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
+    <?php echo $style; ?>
     <script src="backend/keyevents.js" defer></script>
     <title>Athens – trivia quiz</title>
 </head>
@@ -79,13 +98,13 @@ function validateInput($input) {
     <header id="header">
         <nav class="menu">
             <ul>
-                <li><a href="main.html">Homepage</a></li>
+                <li><a href="main.php">Homepage</a></li>
                 <li class="submenu"><a href="#">Information</a>
                     <ul>
                         <li class="sub-submenu"><a href="#">About Athens</a>
                             <ul>
-                                <li><a href="places_people.html">Places & People</a></li>
-                                <li><a href="data.html">Data</a></li>
+                                <li><a href="places_people.php">Places & People</a></li>
+                                <li><a href="data.php">Data</a></li>
                             </ul>
                         </li>
                         <li class="sub-submenu"><a href="#">More info</a>
@@ -109,7 +128,7 @@ function validateInput($input) {
                         <li class="sub-submenu"><a href="#">Quizes & Games</a>
                             <ul>
                                 <li><a href="quiz_questions.php">Quiz</a></li>
-                                <li><a href="numbers.html">Guess The Number </a></li>
+                                <li><a href="numbers.php">Guess The Number </a></li>
                             </ul>
                         </li>
                         <li><a href="photos.zip">Download photos</a></li>

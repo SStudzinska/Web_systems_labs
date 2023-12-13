@@ -1,0 +1,420 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+@media screen and (max-width: 1150px) {
+    #mainphoto img {
+        width: 95vw !important;
+        height: fit-content !important;
+    }
+}
+
+@page: first {
+    margin-left: 5cm;
+}
+
+
+body {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: black;
+    color: white;
+    font-family:'Times New Roman';
+
+}
+
+
+.border-container {
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    border-width: 8px;
+    border-color: #2b71c7;
+    border-style: double;
+    background-color: black;
+    color: white;
+}
+a {
+    color: blue;
+}
+a:link{
+    color: blue;
+
+}
+a:visited{
+    color:blue;
+}
+.menu ul li {
+    background-color: gray;
+    width: 200px;
+    border: 1px solid #fff;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    float: left;
+    color: #fff;
+    position: relative;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+@media screen and (max-width: 1150px) {
+    #mainphoto img {
+        width: 95vw !important;
+        height: fit-content !important;
+    }
+}
+
+@page: first {
+    margin-left: 5cm;
+}
+
+
+main {
+    flex: 1;
+}
+
+#form {
+    background-color: #000;
+    background-image: url('https://cdni.iconscout.com/illustration/premium/thumb/parthenon-athens-3547597-2975172.png');
+    background-attachment: fixed;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+
+.menu {
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    color: black;
+    z-index: 10;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+
+.menu ul li:hover {
+    background-color: #6ca4e8;
+}
+
+.menu ul a:hover {
+    color:rgb(135, 6, 248);
+}
+
+.menu ul ul,
+.submenu ul {
+    display: none;
+}
+
+.menu ul ul ul {
+    margin-left: 200px;
+    top: 0;
+    position: absolute;
+}
+
+.submenu ul li {
+    background-color: rgb(197, 221, 219);
+    width: 200px;
+    border: 1px solid #fff;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    float: left;
+    color: #fff;
+    position: relative;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.submenu ul li:hover {
+    background-color: rgb(203, 203, 203);
+}
+
+.menu ul li:hover>ul {
+    display: block;
+}
+
+h1 {
+    font-variant: small-caps;
+    font-size: 40pt;
+    margin: 10px 5px;
+    font-weight: lighter;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+    text-align: justify;
+    margin: 5px 15px;
+    font-size: 15px;
+
+}
+
+h2 {
+    font-size: 2em;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1cm;
+    margin: 10px;
+    color: #2b71c7;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 120%;
+    font-weight: 900;
+    margin: 1.5%;
+}
+
+
+a:active {
+    color: blue;
+}
+
+
+summary {
+    margin: 20px 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#places-list li {
+    margin-left: 10%;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#athenians-list li {
+    margin-left: 5%;
+    list-style-type: square;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.article {
+    background-color: rgba(6, 0, 0, 0.689);
+    border: 4px solid #2b71c7;
+    margin: 50px;
+    border-radius: 10px;
+    padding: 30px;
+
+}
+
+.semitransparent {
+    background-color: rgba(6, 0, 0, 0.689);
+    margin: 50px;
+    padding: 30px;
+}
+
+img {
+    width: 50%;
+    height: 35%;
+}
+
+#mainphoto {
+    text-align: center;
+}
+
+#mainphoto img {
+    width: 70em;
+    height: fit-content;
+    border: 8px dotted;
+    border-radius: 80%;
+}
+
+
+.image-container {
+    text-align: center;
+}
+
+.image-container img {
+    display: inline-block;
+    border-radius: 10pt;
+}
+
+table,
+th,
+td {
+    position: static;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+tr:nth-child(even):not(#numbers tr) {
+    background-color: rgb(45, 10, 37);
+}
+
+table:only-child {
+    border-width: 5px;
+    border-style: dotted;
+    border-color: #2b71c7;
+}
+
+#geographic td {
+    padding: 1rem;
+}
+
+#geographic tr:nth-child(2) {
+    height: 5em;
+    vertical-align: bottom;
+}
+
+#administrative {
+    position: relative;
+    top: 6.2em;
+    left: 27em;
+    border-collapse: collapse;
+}
+
+#administrative tr>th {
+    color: blue;
+}
+
+#administrative td:not(:first-child) {
+    text-align: right;
+}
+
+#numbers th, #numbers td {
+    border: none;
+}
+
+#numbers th:first-child,
+#numbers td:nth-last-child(2) {
+    background-color: rgb(68, 4, 4);
+}
+
+#miscellaneous {
+    position: relative;
+    bottom: 23em;
+    left: 27em;
+    border-spacing: 5px;
+}
+
+#miscellaneous tr:last-of-type {
+    background-color: rgb(18, 64, 28) !important;
+}
+
+:target:not(header) {
+    background-color: rgba(255, 255, 0, 0.7);
+}
+
+.main-margin {
+    margin: 30px;
+}
+
+#quiz-questions input:focus,
+#quiz-questions select:focus,
+#quiz-questions input:checked+label,
+#quiz-questions input:hover+label {
+    background-color: rgba(255, 255, 0, 0.7);
+}
+
+#quiz-questions input:empty:not(input[type="submit"], input[type="reset"]) {
+    background-color: rgba(128, 128, 128, 0.5) !important;
+}
+
+#quiz-answers details:last-child {
+    border: 5px dotted red;
+}
+
+#quiz-answers img {
+    float: left;
+    margin-bottom: 1em;
+    margin-right: 1em;
+}
+
+#float-separator,
+#quiz-answers aside {
+    clear: left;
+}
+
+.personal-form input:disabled {
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+#personal-form-aux input:enabled:not(input[type="submit"], input[type="reset"], input[type="button"]) {
+    background-color: rgba(0, 128, 0, 0.5);
+}
+
+ol {
+    position: relative;
+    right: 4em;
+}
+
+button {
+    background-color: #2b71c7;
+    color: black;
+    padding: 15px 32px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    height: 50px;
+    width: 200px;    
+}
+
+.element-button {
+    height: fit-content;
+    width: fit-content;
+}
+
+#image { 
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20%;
+    width: 600px;
+    height: 380px;
+}
+
+.zoomable {
+    transition: transform 0.3s ease-in-out;
+}
+
+.zoomable:hover {
+    cursor: zoom-in;
+    filter: brightness(90%);
+  }
+
+.zoomed {
+    transform: scale(1.5);
+}
+
+
+#drawingCanvas {
+    position: relative;
+    background-color: rgb(246, 246, 246);
+    border: 1px solid #000;
+    margin: 25px;
+  }
+
+.invalid {
+    border-color: red;
+}
+
+.error {
+    color: red;
+    font-size: small;
+}
+
+.hint {
+    color: gray;
+    font-size: small;
+}

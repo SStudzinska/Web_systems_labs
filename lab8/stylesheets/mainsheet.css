@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
 
 @media screen and (max-width: 1150px) {
@@ -20,6 +20,18 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+
+    
+}
+
+body.numbers-body {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+    margin-top: 50px;
+    background: yellow;
 }
 
 main {
@@ -64,7 +76,6 @@ main {
     float: left;
     color: #fff;
     position: relative;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
@@ -97,7 +108,6 @@ main {
     float: left;
     color: #fff;
     position: relative;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
@@ -114,7 +124,6 @@ h1 {
     font-size: 40pt;
     margin: 10px 5px;
     font-weight: lighter;
-    font-family: 'Times New Roman', Times, serif;
 }
 
 p {
@@ -126,7 +135,6 @@ p {
 
 h2 {
     font-size: 2em;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     line-height: 1cm;
     margin: 10px;
     color: #e45e10;
@@ -134,7 +142,6 @@ h2 {
 }
 
 h3 {
-    font-family: 'Times New Roman', Times, serif;
     font-size: 120%;
     font-weight: 900;
     margin: 1.5%;
@@ -159,19 +166,19 @@ a:link {
 
 summary {
     margin: 20px 10px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+ 
 }
 
 #places-list li {
     margin-left: 10%;
     font-weight: 600;
-    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 #athenians-list li {
     margin-left: 5%;
     list-style-type: square;
-    font-family: Arial, Helvetica, sans-serif
+
 }
 
 .article {
@@ -392,3 +399,4 @@ button {
     color: gray;
     font-size: small;
 }
+

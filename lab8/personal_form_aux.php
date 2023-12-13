@@ -33,6 +33,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+$style='';
+if (isset($_COOKIE["darkMode"]) && $_COOKIE["darkMode"] === 'true') {
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/darkmode.css">';
+}
+else if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true'){
+   $style = '<link rel="stylesheet" type="text/css" href="stylesheets/rainbowmode.css">';
+}
+else {
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">';
+}
+
+$backgroundColor = isset($_COOKIE['backgroundColor']) ? $_COOKIE['backgroundColor'] : '#f5f5dc';
+$textColor = isset($_COOKIE['textColor']) ? $_COOKIE['textColor'] : '#000000';
+$fontFamily = isset($_COOKIE['fontFamily']) ? $_COOKIE['fontFamily'] : 'Verdana';
+
+
+$style2 = "
+    <style>
+        body {
+            background-color: $backgroundColor !important;
+            color: $textColor !important;
+        }
+
+        button, a, p, label, option, h1, h2, h3 {
+            font-family: $fontFamily !important;
+        }
+    </style>
+";
+
 ?>
 
 
@@ -46,7 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="keywords" content="information, yourself, favorite, common, important">
     <meta name="description" content="Here on this site you can provide additonal information about yourself.">
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
-    <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
+    <?php echo $style; ?>
+    <?php echo $style2; ?>
     <script src="backend/keyevents.js" defer></script>
     <title>Personal form</title>
 </head>
@@ -55,13 +85,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <header id="header">
         <nav class="menu">
             <ul>
-                <li><a href="main.html">Homepage</a></li>
+                <li><a href="main.php">Homepage</a></li>
                 <li class="submenu"><a href="#">Information</a>
                     <ul>
                         <li class="sub-submenu"><a href="#">About Athens</a>
                             <ul>
-                                <li><a href="places_people.html">Places & People</a></li>
-                                <li><a href="data.html">Data</a></li>
+                                <li><a href="places_people.php">Places & People</a></li>
+                                <li><a href="data.php">Data</a></li>
                             </ul>
                         </li>
                         <li class="sub-submenu"><a href="#">More info</a>
@@ -85,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <li class="sub-submenu"><a href="#">Quizes & Games</a>
                             <ul>
                                 <li><a href="quiz_questions.php">Quiz</a></li>
-                                <li><a href="numbers.html">Guess The Number </a></li>
+                                <li><a href="numbers.php">Guess The Number </a></li>
                             </ul>
                         </li>
                         <li><a href="photos.zip">Download photos</a></li>
@@ -94,19 +124,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </ul>
         </nav>
         <br>&nbsp;&nbsp;&nbsp;
-        <label for="background-color-changer">Background</label>
-        <input type="color" id="background-color-changer" value="#f5f5dc" onchange="changeBackgroundColor()">
-        <label for="text-color-changer">Text</label>
-        <input type="color" id="text-color-changer" value="#000000" onchange="changeTextColor()">
-        <label for="font-family-changer">Font</label>
-        <select id="font-family-changer" onchange="changeFontFamily()">
-            <option value="Verdana">Verdana</option>
-            <option value="Geneva">Geneva</option>
-            <option value="Tahoma">Tahoma</option>
-            <option value="Arial">Arial</option>
-            <option value="Times New Roman">Times New Roman</option>
-            <option value="Courier New">Courier New</option>
-        </select>
     </header>
 
     <main class="main-margin">
