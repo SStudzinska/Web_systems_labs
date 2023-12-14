@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Invalid username or password";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="keywords" content="information, yourself, name, surname, birthday, email, phone">
     <meta name="description" content="This website contains a form to fill with personal information about yourself.">
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
-    <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
+    <?php echo $style; ?>
     <title>Login page</title>
     <script src="backend/keyevents.js"></script>
     <style>

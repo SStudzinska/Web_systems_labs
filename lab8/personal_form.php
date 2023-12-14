@@ -120,11 +120,6 @@ $style2 = "
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
     <?php echo $style; ?>
     <?php echo $style2; ?>
-    <!-- <style>
-        body {
-            font:;
-        }
-    </style> -->
     <script src="backend/keyevents.js" defer></script>
     <script src="backend/collectionevents.js" defer></script>
     <title>Personal form</title>

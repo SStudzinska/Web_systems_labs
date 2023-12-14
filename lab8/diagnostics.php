@@ -81,13 +81,8 @@ else {
     if (isset($_COOKIE[session_name()])) {
         echo '<p>Content of the ' . session_name() . ' cookie: ' . htmlspecialchars($_COOKIE[session_name()]) . '</p>';
     } else {
-        echo '<p>The "authenticated" cookie is not set.</p>';
-    }
-
-    if (isset($_COOKIE['darkMode'])) {
-        echo '<p>Content of the "darkMode" cookie: ' . htmlspecialchars($_COOKIE['darkMode']) . '</p>';
-    } else {
-        echo '<p>The "darkMode" cookie is not set.</p>';
+        $session_name = session_name();
+        echo "<p>The $session_name cookie is not set.</p>";
     }
 
     if (isset($_COOKIE['darkMode'])) {
