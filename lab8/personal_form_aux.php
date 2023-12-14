@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+if (isset($_SESSION['created']) && (time() - $_SESSION['created'] > $_SESSION['lifetime'])) {
+    session_unset();
+    session_destroy();
+}
+
+if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) {
+    header('Refresh: 3; URL=login.php');
+    echo '<br><br><h2 style="text-align: center">You must log in to access this page.</h2>';
+}
 
 $successMsg = $errorMsg = $additionalInfo = '';
 
@@ -121,11 +132,16 @@ $style2 = "
                         <li><a href="photos.zip">Download photos</a></li>
                     </ul>
                 </li>
+                <li style="float:right"><a href="login.php">
+                    <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Login';?>
+                </a></li>
             </ul>
         </nav>
         <br>&nbsp;&nbsp;&nbsp;
     </header>
 
+    <?php if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) : ?>
+    <?php else : ?>
     <main class="main-margin">
         <h1>Personal form</h1>
         <form class="personal-form" id="personal-form-aux" method="post">
@@ -181,9 +197,7 @@ $style2 = "
     <script src="backend/functions.js"></script>
     <script src="backend/styles.js"></script>
     <script src="backend/forms.js"></script>
-
-</script>
-
+    <?php endif; ?>
 </body>
 
 </html>

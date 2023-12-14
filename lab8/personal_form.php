@@ -1,68 +1,75 @@
 <?php
+session_start();
+
+if (isset($_SESSION['created']) && (time() - $_SESSION['created'] > $_SESSION['lifetime'])) {
+    session_unset();
+    session_destroy();
+}
 
 $name = $surname = $birthMonth = $email = $phonenumber = '';
 $errors = [];
 $expiration_time = time() + 60;
 
+if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) {
+    header('Refresh: 3; URL=login.php');
+    echo '<br><br><h2 style="text-align: center">You must log in to access this page.</h2>';
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    print("post");
-    print(isset($_POST["personal-form"]));
     if(isset($_POST["personal-form"])){
-        print("form");
-    $name = $_POST["name"];
-    $surname = $_POST["surname"];
-    $birthMonth = $_POST["birthMonth"];
-    $email = $_POST["email"];
-    $phonenumber = $_POST["phonenumber"];
+        $name = $_POST["name"];
+        $surname = $_POST["surname"];
+        $birthMonth = $_POST["birthMonth"];
+        $email = $_POST["email"];
+        $phonenumber = $_POST["phonenumber"];
 
-    $cleanedName = preg_replace('/\d/', '', $name);
-    $cleanedSurname = preg_replace('/\d/', '', $surname);
+        $cleanedName = preg_replace('/\d/', '', $name);
+        $cleanedSurname = preg_replace('/\d/', '', $surname);
 
 
-    if (!empty($cleanedName) && !preg_match("/^[\p{L} ]+$/u", $cleanedName)) {
-        $errors[] = "Wrong name input!";
-    }
-
-    if (!preg_match("/^[\p{L} ]+$/u", $cleanedSurname)) {
-        $errors[] = "Wrong surname input!";
-    }
-
-    $allowedMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    if (!empty($birthMonth) && !in_array($birthMonth, $allowedMonths)) {
-        $errors[] = "Wrong birth month!";
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Wrong email input!";
-    }
-
-    if (!empty($phonenumber)) {
-        if (!preg_match('/^\+\d{2} \d{3}-\d{3}-\d{3}$/', $phonenumber)) {
-            $errors[] = "Wrong phone input!";
+        if (!empty($cleanedName) && !preg_match("/^[\p{L} ]+$/u", $cleanedName)) {
+            $errors[] = "Wrong name input!";
         }
-    }   
 
-    if (empty($errors)) {
-        header("Location: personal_form_aux.php");
-        die();
-    }
+        if (!preg_match("/^[\p{L} ]+$/u", $cleanedSurname)) {
+            $errors[] = "Wrong surname input!";
+        }
+
+        $allowedMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        if (!empty($birthMonth) && !in_array($birthMonth, $allowedMonths)) {
+            $errors[] = "Wrong birth month!";
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Wrong email input!";
+        }
+
+        if (!empty($phonenumber)) {
+            if (!preg_match('/^\+\d{2} \d{3}-\d{3}-\d{3}$/', $phonenumber)) {
+                $errors[] = "Wrong phone input!";
+            }
+        }   
+
+        if (empty($errors)) {
+            header("Location: personal_form_aux.php");
+            die();
+        }
 
     }
     elseif(isset($_POST["styles"])){
         if(isset($_POST['backgroundColor']) && !empty($_POST['backgroundColor'])){
-            $backgroundColor = $_POST["backgroundColor"];
-            setcookie('backgroundColor', $backgroundColor, $expiration_time, "/");
+                $backgroundColor = $_POST["backgroundColor"];
+                setcookie('backgroundColor', $backgroundColor, $expiration_time, "/");
             }
         
         if(isset($_POST['textColor']) && !empty($_POST['textColor'])){
-            $textColor = $_POST["textColor"];
-            setcookie('textColor', $textColor, $expiration_time, "/");
+                $textColor = $_POST["textColor"];
+                setcookie('textColor', $textColor, $expiration_time, "/");
             }
         
         if(isset($_POST['fontFamily']) && !empty($_POST['fontFamily'])){
-            $fontFamily = $_POST["fontFamily"];
-            setcookie('fontFamily', $fontFamily, $expiration_time, "/");
+                $fontFamily = $_POST["fontFamily"];
+                setcookie('fontFamily', $fontFamily, $expiration_time, "/");
             }
         header('Location: ' . $_SERVER['PHP_SELF']);
         exit();
@@ -77,7 +84,7 @@ if (isset($_COOKIE["darkMode"]) && $_COOKIE["darkMode"] === 'true') {
     $style = '<link rel="stylesheet" type="text/css" href="stylesheets/darkmode.css">';
 }
 else if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true'){
-   $style = '<link rel="stylesheet" type="text/css" href="stylesheets/rainbowmode.css">';
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/rainbowmode.css">';
 }
 else {
     $style = '<link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">';
@@ -163,8 +170,13 @@ $style2 = "
                         <li><a href="photos.zip">Download photos</a></li>
                     </ul>
                 </li>
+                <li style="float:right"><a href="login.php">
+                    <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Login';?>
+                </a></li>
             </ul>
         </nav>
+        <?php if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) : ?>
+        <?php else : ?>
         <br>&nbsp;&nbsp;&nbsp;
         <form method="post" action=<?php echo $_SERVER['PHP_SELF'] ?> name="styles">
         <input type="hidden" name="styles" value="1">
@@ -183,8 +195,11 @@ $style2 = "
         <div><input type='submit' value='Submit changes'></div>
         </select>
         </form>
+        <?php endif; ?>
     </header>
-
+    
+    <?php if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) : ?>
+    <?php else : ?>
     <main class="main-margin">
         <h1 id="title">Personal form</h1>
         <input type="button" id="button-change-title" value="Change title">
@@ -237,9 +252,9 @@ $style2 = "
             <input type="reset" id="button-reset">
         </form>
         <?php
-      foreach ($errors as $error) {
-        echo '<p style="color: red;">' . $error . "<br>" . '</p>';
-    }
+            foreach ($errors as $error) {
+                echo '<p style="color: red;">' . $error . "<br>" . '</p>';
+            }
         ?>
     </main>
     <br>
@@ -260,9 +275,6 @@ $style2 = "
             document.getElementById("title").innerHTML = window.prompt(`Enter a new page title:`);
         });
     </script>
-
-
-
+    <?php endif; ?>
 </body>
-
 </html>

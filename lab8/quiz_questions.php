@@ -1,4 +1,16 @@
 <?php
+session_start();
+
+if (isset($_SESSION['created']) && (time() - $_SESSION['created'] > $_SESSION['lifetime'])) {
+    session_unset();
+    session_destroy();
+}
+
+if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) {
+    header('Refresh: 3; URL=login.php');
+    echo '<br><br><h2 style="text-align: center">You must log in to access this page.</h2>';
+}
+
 $errors = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $olympicsInterval = $_POST["olympics-interval"] ?? '';
@@ -13,9 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($errors)) {
-        session_start();
-
-        $_SESSION = [
+        $_SESSION += [
             "city-size"         => $_POST["city-size"] ?? '',
             "parthenon-name"    => $_POST["parthenon-name"] ?? '',
             "acropolis-name"    => $_POST["acropolis-name"] ?? '',
@@ -25,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "syntagma-name"     => $_POST["syntagma-name"] ?? '',
             "lowest-point"      => $_POST["lowest-point"] ?? ''
         ];
-
         header("Location: quiz_answers.php");
         die();
     }
@@ -99,10 +108,15 @@ else {
                         <li><a href="photos.zip">Download photos</a></li>
                     </ul>
                 </li>
+                <li style="float:right"><a href="login.php">
+                    <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Login';?>
+                </a></li>
             </ul>
         </nav>
     </header>
 
+    <?php if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) : ?>
+    <?php else : ?>
     <main class="main-margin">
         <h1>Athens – trivia quiz</h1>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
@@ -258,6 +272,7 @@ else {
             }
         });
     </script> -->
+    <?php endif; ?>
 </body>
 
 </html>

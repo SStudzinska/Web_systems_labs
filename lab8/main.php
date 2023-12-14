@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (isset($_SESSION['created']) && (time() - $_SESSION['created'] > $_SESSION['lifetime'])) {
+    session_unset();
+    session_destroy();
+}
+
 $style='';
 $background='';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -105,6 +112,9 @@ if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true') {
                                     <li><a href="photos.zip">Download photos</a></li>
                                 </ul>
                             </li>
+                            <li style="float:right"><a href="login.php">
+                                <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Login';?>
+                            </a></li>
                         </ul>
                     </nav>
                 </section>

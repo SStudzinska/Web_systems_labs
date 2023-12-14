@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$_SESSION['lifetime'] = 120;
+
 if (isset($_SESSION['created']) && (time() - $_SESSION['created'] > $_SESSION['lifetime'])) {
     session_unset();
     session_destroy();
@@ -15,35 +17,68 @@ else if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true'){
 }
 else {
     $style = '<link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">';
-} 
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['logout'])) {
+        session_unset();
+        session_destroy();
+        header('Location: login.php');
+        exit;
+    }
+
+    $logins = [
+        "admin" => "admin", 
+        "user" => "password",
+        "1" => "1"
+    ];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if (isset($logins[$username]) && $logins[$username] === $password) {
+        $_SESSION['created'] = time();
+        $_SESSION['authenticated'] = true;
+        $_SESSION['username'] = $username;
+        header('Location: '  . $_SERVER['PHP_SELF']);
+        exit;
+    } else {
+        $error = "Invalid username or password";
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="numbers, guessing, game, fun">
-    <meta name="description" content="This is a simple number guessing game.">
-    <link rel="icon" type="image/x-icon" href="https://w7.pngwing.com/pngs/222/896/png-transparent-gray-and-black-1-logo-computer-icons-favicon-number-simple-miscellaneous-angle-text-thumbnail.png">
-    <?php echo $style; ?>
+    <meta name="keywords" content="information, yourself, name, surname, birthday, email, phone">
+    <meta name="description" content="This website contains a form to fill with personal information about yourself.">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5776/5776762.png">
+    <link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">
+    <title>Login page</title>
     <script src="backend/keyevents.js"></script>
-    <title>Guess the Number</title>
     <style>
-        #result {
-            font-size: 18px;
-            margin-top: 20px;
+        div.center {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            width: max-content;
         }
-
-        .container {      
-            display: flex;  
-            justify-content: center;  
-            align-items: center;  
+        div.login {
+            display: grid;
+            grid-template-columns: max-content max-content;
+            gap: 10px;
         }
-   
+        div.login label {
+            text-align: right;
+        }
     </style>
 </head>
-<body class="numbers-body">
+
+<body>
     <header id="header">
         <nav class="menu">
             <ul>
@@ -90,59 +125,35 @@ else {
         </nav>
     </header>
 
-    <h1>Guess the Number Game</h1>
-    <div class="container">
-        <button id ="game">Start the Game</button>
-    </div>
-    <p id="result"></p>
+    <?php if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) : ?>
+    <form method="post" action="login.php">
+        <div class="center">
+            <h2>Login</h2>
+            <div class="login">
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter username" name="username" required>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter password" name="password" required>
+            </div>
+            <br>
+            <?php 
+                if(isset($error)) 
+                    echo "<span style=\"text-align: center; color: red; font-weight: bold\">
+                            $error 
+                        </span><br>"; 
+            ?>
+            <button type="submit">Login</button>
+        </div>
+    </form>
 
-    <script>
-        let targetNumber;
-        let remainingAttempts;
-        const button = document.getElementById("game")
-        button.addEventListener("click", startGame, false)
+    <?php else : ?>
+    <form method="post" action="login.php">
+        <div class="center">
+            <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
+            <button type="submit" name="logout">Logout</button>
+        </div>
+    </form>  
 
-        function startGame() {
-            targetNumber = Math.floor(Math.random() * 100) + 1;
-            remainingAttempts = 3;
-            document.getElementById('result').textContent = '';
-
-            for (let i = 0; i < 3; i++) {
-                const userGuess = window.prompt(`Attempt ${i + 1}: Enter a number between 1 and 100:`);
-
-                if (userGuess === null) {
-                    // User clicked Cancel
-                    return;
-                }
-
-                const parsedGuess = parseInt(userGuess);
-
-                if (isNaN(parsedGuess) || parsedGuess < 1 || parsedGuess > 100) {
-                    window.alert('Please enter a valid number between 1 and 100.');
-                    i--;
-                    continue;
-                }
-
-                remainingAttempts--;
-
-                if (parsedGuess === targetNumber) {
-                    displayResult(`Congratulations! You guessed the correct number in ${i + 1} attempts.`);
-                    break;
-                } else {
-                    const hint = parsedGuess < targetNumber ? 'higher' : 'lower';
-                    if (remainingAttempts > 0) {
-                        window.alert(`Wrong guess. Try again! The correct number is ${hint}. Remaining attempts: ${remainingAttempts}`);
-                    } else {
-                        displayResult(`Sorry, you've run out of attempts. The correct number was ${targetNumber}.`);
-                        break;
-                    }
-                }
-            }
-        }
-
-        function displayResult(message) {
-            document.getElementById('result').textContent = message;
-        }
-    </script>
+    <?php endif; ?>
 </body>
 </html>

@@ -1,14 +1,21 @@
 <?php
- $style='';
- if (isset($_COOKIE["darkMode"]) && $_COOKIE["darkMode"] === 'true') {
-     $style = '<link rel="stylesheet" type="text/css" href="stylesheets/darkmode.css">';
- }
- else if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true'){
+session_start();
+
+if (isset($_SESSION['created']) && (time() - $_SESSION['created'] > $_SESSION['lifetime'])) {
+    session_unset();
+    session_destroy();
+}
+
+$style='';
+if (isset($_COOKIE["darkMode"]) && $_COOKIE["darkMode"] === 'true') {
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/darkmode.css">';
+}
+else if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true'){
     $style = '<link rel="stylesheet" type="text/css" href="stylesheets/rainbowmode.css">';
- }
- else {
-     $style = '<link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">';
- } 
+}
+else {
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">';
+} 
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +79,9 @@
                         <li><a href="photos.zip">Download photos</a></li>
                     </ul>
                 </li>
+                <li style="float:right"><a href="login.php">
+                    <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Login';?>
+                </a></li>
             </ul>
         </nav>
     </header>

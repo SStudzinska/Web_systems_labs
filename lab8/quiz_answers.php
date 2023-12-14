@@ -1,10 +1,15 @@
 <?php
-
-
-
-
-
 session_start();
+
+if (isset($_SESSION['created']) && (time() - $_SESSION['created'] > $_SESSION['lifetime'])) {
+    session_unset();
+    session_destroy();
+}
+
+if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) {
+    header('Refresh: 3; URL=login.php');
+    echo '<br><br><h2 style="text-align: center">You must log in to access this page.</h2>';
+}
 
 define('QUIZ_ANSWERS', [
     'city-size'         => 'seventh',
@@ -134,10 +139,15 @@ else {
                         <li><a href="photos.zip">Download photos</a></li>
                     </ul>
                 </li>
+                <li style="float:right"><a href="login.php">
+                    <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Login';?>
+                </a></li>
             </ul>
         </nav>
     </header>
 
+    <?php if (!isset($_SESSION['authenticated']) or !$_SESSION['authenticated']) : ?>
+    <?php else : ?>
     <main class="main-margin">
         <h1>Athens – trivia quiz</h1>
         <?php 
@@ -236,6 +246,7 @@ else {
         <a href="#header">Back to top</a>
         <p>Write to us: <a href="mailto:Athens_Greece@gmail.com">Athens_Greece@gmail.com</a></p>
     </footer>
+    <?php endif; ?>
 </body>
 
 </html>

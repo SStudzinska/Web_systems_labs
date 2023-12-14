@@ -1,30 +1,37 @@
 <?php
-  $style='';
-  $background='';
-  if (isset($_COOKIE["darkMode"]) && $_COOKIE["darkMode"] === 'true') {
-      $style = '<link rel="stylesheet" type="text/css" href="stylesheets/darkmode.css">';
-      $background = '
-     body {
-        background-image: url("https://www.shutterstock.com/image-vector/hand-drawn-simple-abstract-flowers-600nw-2323137643.jpg");
-        background-repeat: repeat;
-     }';
-  }
-  else if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true'){
-     $style = '<link rel="stylesheet" type="text/css" href="stylesheets/rainbowmode.css">';
-     $background = '
-     body {
-        background-image: url("https://img.freepik.com/premium-vector/fabulous-cartoon-dark-olive-branches-shine-elements-vector-seamless-pattern_647116-153.jpg");
-        background-repeat: repeat;
-     }';
-  }
-  else {
-      $style = '<link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">';
-      $background = '
-      body {
-        background-image: url("https://media.istockphoto.com/id/1249866274/vector/olive-branch-seamless-pattern.jpg?s=612x612&w=0&k=20&c=_rdjry6inYvdS_b0LzJla9NxM1OC3q2KcVTMHiTGu8c=");
-        background-repeat: repeat;
+session_start();
+
+if (isset($_SESSION['created']) && (time() - $_SESSION['created'] > $_SESSION['lifetime'])) {
+    session_unset();
+    session_destroy();
+}
+
+$style='';
+$background='';
+if (isset($_COOKIE["darkMode"]) && $_COOKIE["darkMode"] === 'true') {
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/darkmode.css">';
+    $background = '
+    body {
+    background-image: url("https://www.shutterstock.com/image-vector/hand-drawn-simple-abstract-flowers-600nw-2323137643.jpg");
+    background-repeat: repeat;
     }';
-  } 
+}
+else if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true'){
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/rainbowmode.css">';
+    $background = '
+    body {
+    background-image: url("https://img.freepik.com/premium-vector/fabulous-cartoon-dark-olive-branches-shine-elements-vector-seamless-pattern_647116-153.jpg");
+    background-repeat: repeat;
+    }';
+}
+else {
+    $style = '<link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">';
+    $background = '
+    body {
+    background-image: url("https://media.istockphoto.com/id/1249866274/vector/olive-branch-seamless-pattern.jpg?s=612x612&w=0&k=20&c=_rdjry6inYvdS_b0LzJla9NxM1OC3q2KcVTMHiTGu8c=");
+    background-repeat: repeat;
+}';
+} 
 ?>
 
 <!DOCTYPE html>
@@ -85,6 +92,9 @@
                         <li><a href="photos.zip">Download photos</a></li>
                     </ul>
                 </li>
+                <li style="float:right"><a href="login.php">
+                    <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Login';?>
+                </a></li>
             </ul>
         </nav>
     </header>
