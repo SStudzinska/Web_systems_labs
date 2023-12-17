@@ -136,6 +136,7 @@ if (isset($_COOKIE["rainbowMode"]) && $_COOKIE["rainbowMode"] === 'true') {
         </label>
     </form>
     <a href="diagnostics.php">Click here to check cookies</a>
+    <div><a href="show_user_info.php"> Click here to show tables with users' info!</a></div>
 </div>
     <main class="border-container">
         <article>
