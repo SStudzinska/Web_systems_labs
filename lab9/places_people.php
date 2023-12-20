@@ -93,7 +93,7 @@ else {
                     </ul>
                 </li>
                 <li style="float:right"><a href="login.php">
-                    <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Login';?>
+                    <?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'Login';?>
                 </a></li>
             </ul>
         </nav>

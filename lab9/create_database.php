@@ -4,6 +4,7 @@ $username = "student";
 $password = "student";
 $dbname = "user_database";
 
+mysqli_report(MYSQLI_REPORT_OFF);
 $conn = mysqli_connect($servername, $username, $password);
 
 if (!$conn) {
@@ -58,7 +59,8 @@ $sql_check_username = "SELECT * FROM users WHERE username = '$adminUsername'";
 $result = mysqli_query($conn, $sql_check_username);
 
 if ($result->num_rows == 0) {
-    $sql_insert_admin = "INSERT INTO users (username, password) VALUES ('$adminUsername', 'admin')";
+    $adminPassword = password_hash('admin', PASSWORD_DEFAULT);
+    $sql_insert_admin = "INSERT INTO users (username, password) VALUES ('$adminUsername', '$adminPassword')";
     
     if (mysqli_query($conn, $sql_insert_admin) === TRUE) {
         echo "Admin username inserted successfully. ";
@@ -68,7 +70,6 @@ if ($result->num_rows == 0) {
 } else {
     echo "Admin username already exists. ";
 }
-
 
 $sql_insert_admin_info = "INSERT INTO user_info (user_id, name, surname, email, phone_number, birthdate)
                           VALUES ('1', 'Admin', 'Admin', 'admin@example.com', '123456789', '2000-01-01')";
@@ -85,7 +86,8 @@ $sql_check_username1 = "SELECT * FROM users WHERE username = '$user1Username'";
 $result = mysqli_query($conn, $sql_check_username1);
 
 if ($result->num_rows == 0) {
-    $sql_insert_user = "INSERT INTO users (username, password) VALUES ('$user1Username', 'p@ssword')";
+    $user1Password = password_hash('p@ssword', PASSWORD_DEFAULT);
+    $sql_insert_user = "INSERT INTO users (username, password) VALUES ('$user1Username', '$user1Password')";
     
     if (mysqli_query($conn, $sql_insert_user) === TRUE) {
         echo "User username inserted successfully. ";

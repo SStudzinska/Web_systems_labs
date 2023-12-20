@@ -19,6 +19,28 @@ else {
     $style = '<link rel="stylesheet" type="text/css" href="stylesheets/mainsheet.css">';
 }
 
+$servername = 'localhost';
+$db_username = "student";
+$db_password = "student";
+$db_name = "user_database";
+
+mysqli_report(MYSQLI_REPORT_OFF);
+$conn = mysqli_connect($servername, $db_username, $db_password);
+
+if (!$conn) {
+    exit("Connection: failed: " . mysqli_connect_error());
+}
+
+if (!$conn->select_db($db_name)) {
+    if ($conn->query("CREATE DATABASE IF NOT EXISTS $db_name")) {
+        echo "The database has been just created or it already exists\n";
+    } else {
+        exit("Error creating the database: " . $conn->error);
+    }
+}
+
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['logout'])) {
         session_unset();
@@ -27,21 +49,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $logins = [
-        "admin" => "admin", 
-        "user" => "password",
-        "1" => "1"
-    ];
+    if (isset($_POST['edit'])) {
+        header('Location: register.php');
+        exit;
+    }
+
     $username = $_POST['username'];
     $password = $_POST['password'];
-    if (isset($logins[$username]) && $logins[$username] === $password) {
-        $_SESSION['created'] = time();
-        $_SESSION['authenticated'] = true;
-        $_SESSION['username'] = $username;
-        header('Location: '  . $_SERVER['PHP_SELF']);
-        exit;
+
+    $resultUsers = $conn->query("SELECT * FROM users WHERE username = '$username'");
+    $resultInfo = $conn->query("SELECT * FROM user_info WHERE user_id = (SELECT id FROM users WHERE username = '$username')");
+    if ($resultUsers->num_rows == 0) {
+        $error = "Invalid username or password.";
     } else {
-        $error = "Invalid username or password";
+        if (!password_verify($password, $resultUsers->fetch_assoc()['password'])) {
+            $errors[] = "Invalid username or password.";
+        } else {
+            $_SESSION['created'] = time();
+            $_SESSION['authenticated'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['name'] = $resultInfo->fetch_assoc()['name'];
+            header('Location: '  . $_SERVER['PHP_SELF']);
+            exit;
+        }
     }
 }
 
@@ -120,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </ul>
                 </li>
                 <li style="float:right"><a href="login.php">
-                    <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Login';?>
+                    <?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'Login';?>
                 </a></li>
             </ul>
         </nav>
@@ -138,19 +168,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <br>
             <?php 
-                if(isset($error)) 
-                    echo "<span style=\"text-align: center; color: red; font-weight: bold\">
-                            $error 
-                        </span><br>"; 
+                if(isset($errors)) {
+                    foreach ($errors as $error) {
+                        echo "<span style=\"text-align: center; color: red; font-weight: bold\">
+                                $error 
+                            </span><br>";
+                    }
+                }
             ?>
             <button type="submit">Login</button>
+            <br>
+            <h4>New user? <a href="register.php">Register here</a></h4>
         </div>
     </form>
 
     <?php else : ?>
     <form method="post" action="login.php">
         <div class="center">
-            <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
+            <h2>Welcome, <?php echo $_SESSION['name']; ?>!</h2>
+            <button type="submit" name="edit">Edit data</button>
             <button type="submit" name="logout">Logout</button>
         </div>
     </form>  
