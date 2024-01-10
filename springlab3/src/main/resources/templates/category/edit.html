@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{_shared/_layout}">
+
+<title layout:fragment="title">Edit category</title>
+
+<div layout:fragment="content">
+    <h1>Edit the category</h1>
+    <form action="#"  th:action="@{/category/edit}" th:object="${category}" method="post">
+        <label for="id" class="form-label">Id</label>
+        <input type="text" class="form-control" disabled id="id" th:field="*{id}"/>
+        <input type="hidden" class="form-control" disabled id="id" th:field="*{id}"/>
+        <br>
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" th:field="*{name}"/>
+        <br>
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        <label for="code" class="form-label">Code</label>
+        <input type="text" class="form-control" id="code" th:field="*{code}"/>
+        <br>
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></p>
+        <div th:if="${error}">
+            <p class="alert alert-danger" th:text="${error}"></p>
+        </div>
+        <input type="submit" class="btn btn-success" value="Modify"/> 
+        <input type="reset" class="btn btn-danger" value="Reset"/>
+    </form>
+</div>
+
+</html>

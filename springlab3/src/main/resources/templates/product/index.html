@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org en"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{_shared/_layout}">
+
+<title layout:fragment="title">Product list</title>
+
+<div layout:fragment="content">
+    <h1>Product list</h1>
+    <a class="btn btn-success" th:href="@{/product/add}">Add product</a>
+    <br><br>
+    <div class="content">
+        <table class="display table table-bordered" style="width:800px">
+            <thead class="text-center">
+                <tr>
+                    <th class="text-right">Id</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Weight [kg]</th>
+                    <th class="text-center">Price [PLN]</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center" colspan="3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${productList}">
+                    <td class="text-right"th:text= "${product.getId()}"></td>
+                    <td class="text-left"th:text= "${product.getName()}"></td>
+                    <td class="text-right" th:text= "${product.getWeight()}"></td>
+                    <td class="text-right" th:text= "${product.getPrice()}"></td>
+                    <td class="text-right" th:text= "${product.getCategory()?.getName()}"></td>
+                    <td><a class="btn btn-primary" th:href="@{/product/details(id=${product.id})}">Details</a></td>
+                    <td><a class="btn btn-primary" th:href="@{/product/{productId}/edit(productId=${product.getId()})}">Edit</a></td>
+                    <td><a class="btn btn-danger" th:href="@{/product/remove(id=${product.id})}">Remove</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</html>
