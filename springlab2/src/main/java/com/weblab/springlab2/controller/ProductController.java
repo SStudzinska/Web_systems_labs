@@ -25,6 +25,25 @@ public class ProductController {
     @GetMapping("/product")
     public String home(Model model) {
         List<Product> productList = productService.getProductList();
+        try {
+            Product product1 = productList.get(0);
+            Product product2 = productList.get(1);
+            Product product3 = productList.get(2);
+            
+            if (product1.getCategory() == null) {
+                product1.setCategory(categoryService.getCategoryList().get(0));
+                productService.updateProduct(product1);
+            } if (product2.getCategory() == null) {
+                product2.setCategory(categoryService.getCategoryList().get(1));
+                productService.updateProduct(product2);
+            } if (product3.getCategory() == null) {
+                product3.setCategory(categoryService.getCategoryList().get(0));
+                productService.updateProduct(product3);
+            }
+        }
+        catch (Exception e) {
+            {};
+        }
         model.addAttribute("productList", productList);
         return "product/index";
     }
