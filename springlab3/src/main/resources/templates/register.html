@@ -9,10 +9,10 @@
 <div layout:fragment="content">
     <h1>Register a new user</h1>
     <form action="#" th:action="@{/register}" th:object="${account}" method="post">
-        <p>Username: <input type="text" th:field="*{username}" /></p>
-        <p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-        <p>Password: <input type="password" th:field="*{password}" /></p>
-        <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        <p>Username: <input type="text" th:field="*{account.username}" /></p>
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{account.username}"></p>
+        <p>Password: <input type="password" th:field="*{account.password}" /></p>
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{account.password}"></p>
         <p><input type="submit" value="Register"/></p>
     </form>
 

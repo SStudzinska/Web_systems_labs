@@ -3,10 +3,11 @@
       xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="~{_shared/_layout}">
 
-<title layout:fragment="title">Adding products</title>
+<title layout:fragment="title">Product list</title>
 
 <div layout:fragment="content">
-    <h1>Add products to cart /h1>
+    <h1>Product list</h1>
+    <a class="btn btn-success" th:href="@{/admin/product/add}">Add product</a>
     <br><br>
     <div class="content">
         <table class="display table table-bordered" style="width:800px">
@@ -27,12 +28,13 @@
                     <td class="text-right" th:text= "${product.getWeight()}"></td>
                     <td class="text-right" th:text= "${product.getPrice()}"></td>
                     <td class="text-right" th:text= "${product.getCategory()?.getName()}"></td>
-                    <td><a class="btn btn-success" th:href="">Add to cart</a></td>
+                    <td><a class="btn btn-primary" th:href="@{/admin/product/details(id=${product.id})}">Details</a></td>
+                    <td><a class="btn btn-primary" th:href="@{/admin/product/{productId}/edit(productId=${product.getId()})}">Edit</a></td>
+                    <td><a class="btn btn-danger" th:href="@{/admin/product/remove(id=${product.id})}">Remove</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <td><a class="btn btn-primary" th:href="@{/cart}">Cart summary</a></td>
 </div>
 
 </html>

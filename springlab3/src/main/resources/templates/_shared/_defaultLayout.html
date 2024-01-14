@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title layout:fragment="title">Admin layout</title>
+    <title layout:fragment="title">Store</title>
     <style>
         body{
             margin: 0;
@@ -20,7 +20,7 @@
 <body>
 <!-- menu.html -->
 <div layout:fragment="menu">
-    <div th:insert="~{_shared/_menu :: menu}"></div>
+    <div th:insert="~{_shared/_defaultMenu :: menu}"></div>
 </div>
 <main>
     <div layout:fragment="content">

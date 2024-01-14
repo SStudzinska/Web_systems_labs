@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org en"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{_shared/_userLayout}">
+
+<title layout:fragment="title">Cart summary</title>
+
+<div layout:fragment="content">
+    <h1>Cart summary</h1>
+    <br><br>
+    <div class="content">
+        <table class="display table table-bordered" style="width:800px">
+            <thead class="text-center">
+                <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Weight [kg]</th>
+                    <th class="text-center">Price [PLN]</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center" colspan="1">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${productsInCart}">
+                    <td class="text-left" style="justify-content: center;" th:text= "${product.getProduct().getName()}"></td>
+                    <td class="text-right" th:text= "${product.getProduct().getWeight()}"></td>
+                    <td class="text-right" th:text="${#numbers.formatDecimal(product.getProduct().getPrice() * product.getQuantity(), 0, 'COMMA', 2, 'POINT')}"></td>
+                    <td class="text-right" th:text= "${product.getProduct().getCategory()?.getName()}"></td>
+                    <td style="display: flex; justify-content: center; align-items: center;">
+                        <a class="btn btn-danger" th:href="@{/user/cart/{productId}/sub(productId=${product.getId()})}" style="margin-right: auto;">-</a>
+                        <div class="text-center" th:text="${product.getQuantity()}" style="margin: 0 10px;"></div>
+                        <a class="btn btn-success" th:href="@{/user/cart/{productId}/add(productId=${product.getId()})}" style="margin-left: auto;">+</a>
+                    </td>
+                    <td class="text-center"><a class="btn btn-danger" th:href="@{/user/cart/remove(id=${product.getId()})}">Remove product</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <p>Total price: <span th:text="${totalPrice}"></span></p>
+
+    </div>
+</div>
+
+</html>

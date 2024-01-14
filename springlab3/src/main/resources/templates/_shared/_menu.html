@@ -1,25 +1,27 @@
-<header th:fragment="menu">
-<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="/">Store</a>
+<div th:fragment="menu">
+	<header><nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Store</a>
+			</div>
+			<ul class="nav navbar-nav navbar-left">
+				<li>
+					<a href="/admin/product">Products</a>
+				</li>
+				<li>
+					<a href="/admin/category">Categories</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="/login">Login</a>
+				</li>
+				<li>
+					<a href="/logout">Logout</a>
+				</li>
+			</ul>
 		</div>
-		<ul class="nav navbar-nav navbar-left">
-			<li>
-				<a href="/product">Products</a>
-			</li>
-			<li>
-				<a href="/category">Categories</a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li>
-				<a href="/login">Login</a>
-			</li>
-			<li>
-				<a href="/logout">Logout</a>
-			</li>
-		</ul>
-	</div>
-</nav>
-</header>
+	</nav>
+	</header>
+
+</div>

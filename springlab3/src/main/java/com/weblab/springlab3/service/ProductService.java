@@ -1,5 +1,7 @@
 package com.weblab.springlab3.service;
 
+import com.weblab.springlab3.entity.ProductInCart;
+import com.weblab.springlab3.repository.ProductInCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,12 @@ import java.util.List;
 @Service
 public class ProductService {
     private ProductRepository productRepository;
+    private ProductInCartRepository productInCartRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ProductInCartRepository productInCartRepository) {
         this.productRepository = productRepository;
+        this.productInCartRepository = productInCartRepository;
         seed();
     }
 
@@ -73,6 +77,13 @@ public class ProductService {
     }
 
     public void deleteProductById(long id) {
+    // Manually remove entries from PRODUCT_IN_CART
+        productInCartRepository.findAll().forEach(productInCart -> {
+            if(productInCart.getProduct().getId() == id){
+                productInCartRepository.deleteById(productInCart.getId());
+            }
+                }
+        );
         productRepository.deleteById(id);
     }
 

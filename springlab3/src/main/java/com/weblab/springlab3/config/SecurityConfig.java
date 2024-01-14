@@ -25,9 +25,8 @@ public class SecurityConfig {
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
-                .requestMatchers("/cart/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/product/**").hasRole("ADMIN")
-                .requestMatchers("/category/**").hasRole("ADMIN")
+                .requestMatchers("/user/**").hasRole("USER")
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ).formLogin((formLogin) ->
             formLogin

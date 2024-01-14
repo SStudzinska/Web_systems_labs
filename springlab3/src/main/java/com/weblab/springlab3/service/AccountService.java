@@ -1,6 +1,7 @@
 package com.weblab.springlab3.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,14 @@ public class AccountService implements UserDetailsService {
                 .password(passwordEncoder.encode("user"))
                 .build();
         accountRepository.save(userAccount);
+        Account userAccount2 =
+                Account.builder()
+                        .id(3)
+                        .role(Account.Role.ROLE_USER)
+                        .username("user2")
+                        .password(passwordEncoder.encode("user2"))
+                        .build();
+        accountRepository.save(userAccount2);
     }
 
     public PasswordEncoder getPasswordEncoder() {
@@ -98,6 +107,10 @@ public class AccountService implements UserDetailsService {
             }
         }
         return true;
+    }
+
+    public String getUsername(long id) {
+        return Objects.requireNonNull(accountRepository.findById(id).orElse(null)).getUsername();
     }
 
     @Override

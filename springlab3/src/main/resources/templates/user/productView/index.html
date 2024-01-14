@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org en"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{_shared/_userLayout}">
+
+<title layout:fragment="title">Product View</title>
+
+<div layout:fragment="content">
+    <h1>Product list</h1>
+    <div class="content">
+        <table class="display table table-bordered" style="width:800px">
+            <thead class="text-center">
+            <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Weight [kg]</th>
+                <th class="text-center">Price [PLN]</th>
+                <th class="text-center">Category</th>
+                <th class="text-center" colspan="1">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${productList}">
+                <td class="text-left" th:text="${product.getName()}"></td>
+                <td class="text-right" th:text="${product.getWeight()}"></td>
+                <td class="text-right" th:text="${product.getPrice()}"></td>
+                <td class="text-right" th:text="${product.getCategory()?.getName()}"></td>
+                <td class="text-center">
+                    <a class="btn btn-success" th:href="@{/user/{productId}/add(productId=${product.getId()})}">Add to Cart</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</html>

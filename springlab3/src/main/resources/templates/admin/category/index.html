@@ -7,7 +7,7 @@
 
 <div layout:fragment="content">
     <h1>Category list</h1>
-    <a class="btn btn-success" th:href="@{/category/add}">Add category</a>
+    <a class="btn btn-success" th:href="@{/admin/category/add}">Add category</a>
     <br><br>
     <div class="content">
         <table class="display table table-bordered" style="width:800px">
@@ -24,8 +24,8 @@
                     <td class="text-right"th:text= "${category.getId()}"></td>
                     <td class="text-left"th:text= "${category.getName()}"></td>
                     <td class="text-left" th:text= "${category.getCode()}"></td>
-                    <td><a class="btn btn-primary" th:href="@{/category/{categoryId}/edit(categoryId=${category.getId()})}">Edit</a></td>
-                    <td><a class="btn btn-danger" th:href="@{/category/remove(id=${category.id})}">Remove</a></td>
+                    <td><a class="btn btn-primary" th:href="@{/admin/category/{categoryId}/edit(categoryId=${category.getId()})}">Edit</a></td>
+                    <td><a class="btn btn-danger" th:href="@{/admin/category/remove(id=${category.id})}">Remove</a></td>
                 </tr>
             </tbody>
         </table>

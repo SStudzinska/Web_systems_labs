@@ -30,6 +30,7 @@ public class Account implements UserDetails {
     @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
+    @Getter
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
@@ -90,4 +91,5 @@ public class Account implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

@@ -23,67 +23,86 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/product")
+    @GetMapping("/admin/product")
     public String home(Model model) {
         List<Product> productList = productService.getProductList();
+        try {
+            Product product1 = productList.get(0);
+            Product product2 = productList.get(1);
+            Product product3 = productList.get(2);
+
+            if (product1.getCategory() == null) {
+                product1.setCategory(categoryService.getCategoryList().get(0));
+                productService.updateProduct(product1);
+            } if (product2.getCategory() == null) {
+                product2.setCategory(categoryService.getCategoryList().get(1));
+                productService.updateProduct(product2);
+            } if (product3.getCategory() == null) {
+                product3.setCategory(categoryService.getCategoryList().get(0));
+                productService.updateProduct(product3);
+            }
+        }
+        catch (Exception e) {
+            {};
+        }
         model.addAttribute("productList", productList);
-        return "product/index";
+        return "admin/product/index";
     }
 
-    @GetMapping("/product/add")
+    @GetMapping("/admin/product/add")
     public String add(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("categories", categoryService.getCategories());
-        return "product/add";
+        return "admin/product/add";
     }
 
-    @PostMapping("/product/add")
+    @PostMapping("/admin/product/add")
     public String add(@ModelAttribute @Valid Product product, Errors errors, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("product", product);
         if (errors.hasErrors()) {
-            return "product/add";
+            return "admin/product/add";
         }
         try {
             productService.addProduct(product);
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/product/add";
+            return "redirect:/admin/product/add";
         }
-        return "redirect:/product";
+        return "redirect:/admin/product";
     }
 
-    @GetMapping("/product/details")
+    @GetMapping("/admin/product/details")
     public String add(@RequestParam("id") long id, Model model) {
         model.addAttribute("product", productService.getProductById(id));
-        return "/product/details";
+        return "/admin/product/details";
     }
 
 
-    @GetMapping(value = {"/product/{productId}/edit"})
+    @GetMapping(value = {"/admin/product/{productId}/edit"})
     public String edit(Model model, @PathVariable long productId) {
         model.addAttribute("product", productService.getProductById(productId));
         model.addAttribute("categories", categoryService.getCategories());
-        return "/product/edit";
+        return "/admin/product/edit";
     }
 
-    @PostMapping("/product/edit")
+    @PostMapping("/admin/product/edit")
     public String edit(@ModelAttribute @Valid Product product, Errors errors, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("product", product);
         if (errors.hasErrors()) {
-            return "/product/edit";
+            return "/admin/product/edit";
         }
         try {
             productService.updateProduct(product);
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/product/" + product.getId() + "/edit";
+            return "redirect:/admin/product/" + product.getId() + "/edit";
         }
-        return "redirect:/product";
+        return "redirect:/admin/product";
     }
 
-    @GetMapping("/product/remove")
+    @GetMapping("/admin/product/remove")
     public String remove(@RequestParam("id") long id) {
         productService.deleteProductById(id);
-        return "redirect:/product";
+        return "redirect:/admin/product";
     }
 }
