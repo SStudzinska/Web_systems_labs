@@ -63,24 +63,24 @@ public class CategoryService {
         return categoryRepository.findById(id).orElse(null);
     }
 
-    public void addCategory(Category category) {
+    public Category addCategory(Category category) {
         if (!isNameUnique(category)) {
             throw new IllegalArgumentException("A category with this name already exists");
         }
         if (!isCodeUnique(category)) {
             throw new IllegalArgumentException("A category with this code already exists");
         }
-        categoryRepository.save(category);
+        return categoryRepository.save(category);
     }
 
-    public void updateCategory(Category category) {
+    public Category updateCategory(Category category) {
         if (!isNameUnique(category)) {
             throw new IllegalArgumentException("A category with this name already exists");
         }
         if (!isCodeUnique(category)) {
             throw new IllegalArgumentException("A category with this code already exists");
         }
-        categoryRepository.save(category);
+        return categoryRepository.save(category);
     }
 
     public void deleteCategory(Category category) {

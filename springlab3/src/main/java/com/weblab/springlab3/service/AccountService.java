@@ -76,20 +76,20 @@ public class AccountService implements UserDetailsService {
         return accountRepository.findByUsername(username).orElse(null);
     }
 
-    public void addAccount(Account account) {
+    public Account addAccount(Account account) {
         if (!isUsernameUnique(account)) {
             throw new IllegalArgumentException("An account with this username already exists");
         }
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         account.setRole(Account.Role.ROLE_USER);
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
 
-    public void updateAccount(Account account) {
+    public Account updateAccount(Account account) {
         if (!isUsernameUnique(account)) {
             throw new IllegalArgumentException("An account with this username already exists");
         }
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
 
     public void deleteAccount(Account account) {

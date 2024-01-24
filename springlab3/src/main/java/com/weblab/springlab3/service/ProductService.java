@@ -58,18 +58,22 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
-    public void addProduct(Product product) {
-        if (!isNameUnique(product)) {
-            throw new IllegalArgumentException("A product with this name already exists");
-        }
-        productRepository.save(product);
+    public Product getProductByName(String name) {
+        return productRepository.findByName(name).orElse(null);
     }
 
-    public void updateProduct(Product product) {
+    public Product addProduct(Product product) {
         if (!isNameUnique(product)) {
             throw new IllegalArgumentException("A product with this name already exists");
         }
-        productRepository.save(product);
+        return productRepository.save(product);
+    }
+
+    public Product updateProduct(Product product) {
+        if (!isNameUnique(product)) {
+            throw new IllegalArgumentException("A product with this name already exists");
+        }
+        return productRepository.save(product);
     }
 
     public void deleteProduct(Product product) {
@@ -79,10 +83,10 @@ public class ProductService {
     public void deleteProductById(long id) {
     // Manually remove entries from PRODUCT_IN_CART
         productInCartRepository.findAll().forEach(productInCart -> {
-            if(productInCart.getProduct().getId() == id){
-                productInCartRepository.deleteById(productInCart.getId());
-            }
+                if (productInCart.getProduct().getId() == id) {
+                    productInCartRepository.deleteById(productInCart.getId());
                 }
+            }
         );
         productRepository.deleteById(id);
     }
