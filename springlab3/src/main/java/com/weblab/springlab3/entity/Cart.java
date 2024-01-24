@@ -1,8 +1,6 @@
 package com.weblab.springlab3.entity;
 
-import java.util.HashSet;
 import java.util.Set;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,4 +23,6 @@ public class Cart {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cart_id")
     private Set<ProductInCart> productsInCart;
+
+
 }

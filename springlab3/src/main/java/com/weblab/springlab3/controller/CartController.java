@@ -1,6 +1,8 @@
 package com.weblab.springlab3.controller;
 
+import com.weblab.springlab3.comparator.ProductInCartComparator;
 import com.weblab.springlab3.entity.Product;
+import com.weblab.springlab3.entity.ProductInCart;
 import com.weblab.springlab3.service.CartService;
 import com.weblab.springlab3.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class CartController {
@@ -32,7 +34,12 @@ public class CartController {
     @GetMapping("/user/cart")
     public String showProductsInCart(Model model) {
         String totalPrice = cartService.calculateTotalPrice();
-        model.addAttribute("productsInCart", cartService.getCartProducts());
+        Set<ProductInCart> products = cartService.getCartProducts();
+        List<ProductInCart> productList = new ArrayList<>(products);
+        ProductInCartComparator comparator = new ProductInCartComparator();
+        productList.sort(comparator);
+
+        model.addAttribute("productsInCart", productList);
         model.addAttribute("totalPrice", totalPrice);
         return "user/cart/index";
     }

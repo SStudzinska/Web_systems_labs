@@ -101,11 +101,10 @@ public Set<ProductInCart> getCartProducts() {
     public Cart getCurrentUserCart() {
         // Get the authentication object
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.isAuthenticated()) {
+        if (authentication != null) {
             // Retrieve the username (assuming it's the user's ID in this example)
             String username = authentication.getName();
             Account account = accountRepository.findByUsername(username).orElse(null);
-            System.out.println("user id" + account.getId());
 
             return cartRepository.findById(account.getId()).orElseGet(() -> {
                 Cart newCart = new Cart(account.getId(), account, new LinkedHashSet<>());
