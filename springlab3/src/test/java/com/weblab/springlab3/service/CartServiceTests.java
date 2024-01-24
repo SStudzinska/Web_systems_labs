@@ -1,4 +1,4 @@
-package com.springlab3;
+package com.weblab.springlab3.service;
 
 import com.weblab.springlab3.entity.Account;
 import com.weblab.springlab3.entity.Cart;

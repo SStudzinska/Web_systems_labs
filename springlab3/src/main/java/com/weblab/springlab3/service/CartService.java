@@ -7,13 +7,11 @@ import com.weblab.springlab3.entity.ProductInCart;
 import com.weblab.springlab3.repository.AccountRepository;
 import com.weblab.springlab3.repository.CartRepository;
 import com.weblab.springlab3.repository.ProductInCartRepository;
-import com.weblab.springlab3.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -54,33 +52,33 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
-public Set<ProductInCart> getCartProducts() {
-    // Retrieve the current user's cart
-    Cart cart = getCurrentUserCart();
-    return cart.getProductsInCart();
-}
+    public Set<ProductInCart> getCartProducts() {
+        // Retrieve the current user's cart
+        Cart cart = getCurrentUserCart();
+        return cart.getProductsInCart();
+    }
 
-    public void substractQuantity(Long productId) {
+    public ProductInCart substractQuantity(Long productId) {
         ProductInCart product = productInCartRepository.getById(productId);
         product.setQuantity(product.getQuantity()-1);
         if (product.getQuantity() <= 0){
             removeFromCart(productId);
         }
-        productInCartRepository.save(product);
+        return productInCartRepository.save(product);
 
     }
 
-    public void addQuantity(Long productId){
+    public ProductInCart addQuantity(Long productId){
         ProductInCart product = productInCartRepository.getById(productId);
         product.setQuantity(product.getQuantity()+1);
-        productInCartRepository.save(product);
+        return productInCartRepository.save(product);
     }
 
-    public void removeFromCart(Long productId) {
+    public ProductInCart removeFromCart(Long productId) {
         Cart cart =  getCurrentUserCart();
         ProductInCart product = productInCartRepository.getById(productId);
         cart.getProductsInCart().removeIf(p -> p.equals(product));
-        productInCartRepository.save(product);
+        return productInCartRepository.save(product);
     }
 
     public String calculateTotalPrice() {
@@ -101,7 +99,8 @@ public Set<ProductInCart> getCartProducts() {
     public Cart getCurrentUserCart() {
         // Get the authentication object
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
+        //if (authentication != null) {
+        if (authentication.isAuthenticated()) {
             // Retrieve the username (assuming it's the user's ID in this example)
             String username = authentication.getName();
             Account account = accountRepository.findByUsername(username).orElse(null);
@@ -111,10 +110,7 @@ public Set<ProductInCart> getCartProducts() {
                 return cartRepository.save(newCart);
             });
         } else {
-            return  null;
+            return null;
         }
     }
-
-
-
 }
